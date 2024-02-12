@@ -1,12 +1,17 @@
 plugins {
     id 'java'
+    id "com.github.spotbugs" version "5.0.12"
+    id "checkstyle"
     id 'application'
+    id 'jacoco'
 }
 
-group 'com.example'
-version '1.0'
+apply plugin: 'application'
+apply plugin: 'jacoco'
 
-mainClassName = 'main/java/Main'
+application {
+    mainClassName = 'Main';
+}
 
 repositories {
     mavenCentral()
