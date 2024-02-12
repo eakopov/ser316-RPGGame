@@ -8,6 +8,7 @@ plugins {
 
 apply plugin: 'application'
 apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
 
 application {
     mainClassName = 'Main';
@@ -19,4 +20,33 @@ repositories {
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
+}
+
+
+checkstyle {
+   // Keep checkstyle a little quieter
+   ignoreFailures = true
+   showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+   reports {
+     html.enabled = true
+     xml.enabled = false
+   }
+}
+checkstyle {
+     toolVersion = "8.8"
+}
+
+spotbugsMain {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+spotbugs {
+     ignoreFailures = true
+     showProgress = true
+     effort = 'max'
 }
