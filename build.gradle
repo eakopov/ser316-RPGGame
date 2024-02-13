@@ -6,13 +6,10 @@ plugins {
     id 'jacoco'
 }
 
+apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
 apply plugin: 'checkstyle'
-
-application {
-    mainClassName = 'Main';
-}
 
 repositories {
     mavenCentral()
@@ -22,21 +19,24 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
+application {
+    mainClassName = 'Main'
+}
 
 checkstyle {
-   // Keep checkstyle a little quieter
-   ignoreFailures = true
-   showViolations = false
+    // Keep checkstyle a little quieter
+    ignoreFailures = true
+    showViolations = false
 }
 
 tasks.withType(Checkstyle) {
-   reports {
-     html.enabled = true
-     xml.enabled = false
-   }
+    reports {
+        //html.enabled = true
+        //xml.enabled = false
+    }
 }
 checkstyle {
-     toolVersion = "8.8"
+    toolVersion = "8.8"
 }
 
 spotbugsMain {
@@ -46,7 +46,7 @@ spotbugsMain {
     }
 }
 spotbugs {
-     ignoreFailures = true
-     showProgress = true
-     effort = 'max'
+    ignoreFailures = true
+    showProgress = true
+    effort = 'max'
 }
