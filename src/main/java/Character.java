@@ -23,7 +23,7 @@ public abstract class Character {
     // Height: Short/Average/Tall
     protected String height;
 
-    // Weight/Build: Slim/Average/Beefy
+    // Weight/Build: Slim/Average/Large
     protected String weight;
 
     // Class: Wizard/Paladin/Bard/Druid/Cleric
@@ -44,13 +44,13 @@ public abstract class Character {
     // Constructor
     public Character(String sex, String hairColor, String hairLength, String eyeColor,
                      String height, String weight, String characterClass) {
-        this.sex = sex;
-        this.hairColor = hairColor;
-        this.hairLength = hairLength;
-        this.eyeColor = eyeColor;
-        this.height = height;
-        this.weight = weight;
-        this.characterClass = characterClass;
+        this.sex = sex.toLowerCase();
+        this.hairColor = hairColor.toLowerCase();
+        this.hairLength = hairLength.toLowerCase();
+        this.eyeColor = eyeColor.toLowerCase();
+        this.height = height.toLowerCase();
+        this.weight = weight.toLowerCase();
+        this.characterClass = characterClass.toLowerCase();
         // Calculate initial health based on height, weight, and sex
         this.health = calculateInitialHealth();
         this.experiencePoints = 0;
@@ -64,6 +64,37 @@ public abstract class Character {
     // Method to calculate initial health based on height, weight, and sex
     protected int calculateInitialHealth() {
         // Implementation logic to calculate initial health
+
+        // Height
+        if(height.equals("short")){
+            // Short = Base HP 5
+            health = health + 5;
+        } else if(height.equals("average")){
+            // Average = Base HP 7
+            health = health + 7;
+        } else {
+            // Tall = Base HP 9
+            health = health + 9;
+        }
+
+        // Weight
+        if(weight.equals("slim")){
+            // Slim -= 2 HP
+            health -= 2;
+        } else if(weight.equals("average")){
+            // Large += 2 HP
+            health += 2;
+        } // Average = no change
+
+        // Sex
+        if(sex.equals("male")){
+            // male HP++;
+            health++;
+        } else {
+            // female HP--;
+            health--;
+        }
+
         return 0;
     }
 }
