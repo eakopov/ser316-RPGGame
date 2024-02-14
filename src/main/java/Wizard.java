@@ -9,12 +9,13 @@ public class Wizard extends Character {
         return new Wizard(sex, hairColor, hairLength, eyeColor, height, weight);
     }
 
+    // Total of 31
     @Override
     protected void initializeAttributes() {
         this.strength = 5;
         this.wisdom = 10;
         this.intelligence = 15;
-        this.charisma = 3;
+        this.charisma = 1;
     }
 
 }
