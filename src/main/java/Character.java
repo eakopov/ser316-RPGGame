@@ -41,11 +41,8 @@ public abstract class Character {
     // XP (experience points): an integer, starts at 0 and increases based on fights with enemies
     protected int experiencePoints;
 
-    // Weapon: specified by class, each has their own weapon, ATK (attack), and DEF (defense)
-    protected String weapon;
-
     // Constructor
-    public Character(String sex, String hairColor, String hairLength, String eyeColor,
+    protected Character(String sex, String hairColor, String hairLength, String eyeColor,
                      String height, String weight, String characterClass) {
         this.sex = sex.toLowerCase();
         this.hairColor = hairColor.toLowerCase();
@@ -59,14 +56,13 @@ public abstract class Character {
         this.experiencePoints = 0;
         // Initialize attributes based on character class
         initializeAttributes();
-        initializeWeapon();
     }
+
+    // Factory method for character creation
+    public abstract Character createCharacter(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight);
 
     // Abstract method to initialize attributes based on character class
     protected abstract void initializeAttributes();
-
-    // Abstract method to initialize weapon based on character class
-    protected abstract void initializeWeapon();
 
     // Method to calculate initial health based on height, weight, and sex
     protected int calculateInitialHealth() {
@@ -104,5 +100,112 @@ public abstract class Character {
         }
 
         return HP;
+    }
+
+    /*
+        Getters and setters for all Character attributes
+     */
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getHairColor() {
+        return hairColor;
+    }
+
+    public void setHairColor(String hairColor) {
+        this.hairColor = hairColor;
+    }
+
+    public String getHairLength() {
+        return hairLength;
+    }
+
+    public void setHairLength(String hairLength) {
+        this.hairLength = hairLength;
+    }
+
+    public String getEyeColor() {
+        return eyeColor;
+    }
+
+    public void setEyeColor(String eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getCharacterClass() {
+        return characterClass;
+    }
+
+    public void setCharacterClass(String characterClass) {
+        this.characterClass = characterClass;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getWisdom() {
+        return wisdom;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public int getCharisma() {
+        return charisma;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getExperiencePoints() {
+        return experiencePoints;
+    }
+
+    public void setExperiencePoints(int experiencePoints) {
+        this.experiencePoints = experiencePoints;
     }
 }

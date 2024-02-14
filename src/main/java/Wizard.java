@@ -1,6 +1,12 @@
 public class Wizard extends Character {
-    public Wizard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String characterClass) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, characterClass);
+    public Wizard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "Wizard");
+    }
+
+    @Override
+    public Character createCharacter(String sex, String hairColor, String hairLength,
+                                     String eyeColor, String height, String weight) {
+        return new Wizard(sex, hairColor, hairLength, eyeColor, height, weight);
     }
 
     @Override
@@ -11,8 +17,4 @@ public class Wizard extends Character {
         this.charisma = 3;
     }
 
-    @Override
-    protected void initializeWeapon() {
-        this.weapon = "magic book";
-    }
 }
