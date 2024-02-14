@@ -41,6 +41,9 @@ public abstract class Character {
     // XP (experience points): an integer, starts at 0 and increases based on fights with enemies
     protected int experiencePoints;
 
+    // Weapon: specified by class, each has their own weapon, ATK (attack), and DEF (defense)
+    protected String weapon;
+
     // Constructor
     public Character(String sex, String hairColor, String hairLength, String eyeColor,
                      String height, String weight, String characterClass) {
@@ -56,45 +59,50 @@ public abstract class Character {
         this.experiencePoints = 0;
         // Initialize attributes based on character class
         initializeAttributes();
+        initializeWeapon();
     }
 
     // Abstract method to initialize attributes based on character class
     protected abstract void initializeAttributes();
 
+    // Abstract method to initialize weapon based on character class
+    protected abstract void initializeWeapon();
+
     // Method to calculate initial health based on height, weight, and sex
     protected int calculateInitialHealth() {
         // Implementation logic to calculate initial health
+        int HP = 0;
 
         // Height
         if(height.equals("short")){
             // Short = Base HP 5
-            health = health + 5;
+            HP += 5;
         } else if(height.equals("average")){
             // Average = Base HP 7
-            health = health + 7;
+            HP += 7;
         } else {
             // Tall = Base HP 9
-            health = health + 9;
+            HP += 9;
         }
 
         // Weight
         if(weight.equals("slim")){
             // Slim -= 2 HP
-            health -= 2;
+            HP -= 2;
         } else if(weight.equals("average")){
             // Large += 2 HP
-            health += 2;
+            HP += 2;
         } // Average = no change
 
         // Sex
         if(sex.equals("male")){
             // male HP++;
-            health++;
+            HP++;
         } else {
             // female HP--;
-            health--;
+            HP--;
         }
 
-        return 0;
+        return HP;
     }
 }
