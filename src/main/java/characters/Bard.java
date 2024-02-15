@@ -2,7 +2,7 @@ package characters;
 
 public class Bard extends Character {
     public Bard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "characters.Bard");
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "Bard");
     }
 
     @Override
