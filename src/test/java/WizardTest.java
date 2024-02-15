@@ -2,9 +2,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ClericTest {
+public class WizardTest {
 
-    private final ClericFactory clericFactory = new ClericFactory();
+    private final WizardFactory wizardFactory = new WizardFactory();
 
     @Test
     public void testCharacterSex() {
@@ -17,11 +17,11 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
         assertEquals(sex.toLowerCase(), character.getSex());
     }
 
@@ -36,11 +36,11 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
         assertEquals(hairColor.toLowerCase(), character.getHairColor());
     }
 
@@ -55,11 +55,11 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
         assertEquals(hairLength.toLowerCase(), character.getHairLength());
     }
 
@@ -74,11 +74,11 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
         assertEquals(eyeColor.toLowerCase(), character.getEyeColor());
     }
 
@@ -93,11 +93,11 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
         assertEquals(height.toLowerCase(), character.getHeight());
     }
 
@@ -112,26 +112,26 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
         assertEquals(weight.toLowerCase(), character.getWeight());
     }
 
     @Test
     public void initializeAttributes() {
         // Given
-        Character character = clericFactory.createCharacter("Male", "Brown", "Short", "Blue", "Average", "Average");
+        Character character = wizardFactory.createCharacter("Male", "Brown", "Short", "Blue", "Average", "Average");
 
         // When
         character.initializeAttributes();
 
         // Then
-        assertEquals(13, character.getStrength());
-        assertEquals(15, character.getWisdom());
-        assertEquals(2, character.getIntelligence());
+        assertEquals(5, character.getStrength());
+        assertEquals(10, character.getWisdom());
+        assertEquals(15, character.getIntelligence());
         assertEquals(1, character.getCharisma());
     }
 
@@ -146,11 +146,11 @@ public class ClericTest {
         String weight = "Average";
 
         // When
-        ClericFactory clericFactory = new ClericFactory();
-        Character character = clericFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        WizardFactory wizardFactory = new WizardFactory();
+        Character character = wizardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Cleric);
+        assertTrue(character instanceof Wizard);
     }
 }
