@@ -1,6 +1,8 @@
+package characters;
+
 public class Bard extends Character {
     public Bard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Bard");
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "characters.Bard");
     }
 
     @Override
@@ -11,7 +13,7 @@ public class Bard extends Character {
 
     // Total of 31
     @Override
-    protected void initializeAttributes() {
+    public void initializeAttributes() {
         this.strength = 15;
         this.wisdom = 5;
         this.intelligence = 7;

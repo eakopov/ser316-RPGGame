@@ -1,7 +1,9 @@
+package characters;
+
 /**
  * This abstract class defines the basic attributes and behaviors of a character in the game,
  * including their physical appearance, class, attributes, health, and experience points.
- * Subclasses of Character will provide concrete implementations for specific character classes.
+ * Subclasses of characters.Character will provide concrete implementations for specific character classes.
  *
  * @author Elizabeth Akopov
  * @version 02.13.2024
@@ -26,7 +28,7 @@ public abstract class Character {
     // Weight/Build: Slim/Average/Large
     protected String weight;
 
-    // Class: Wizard/Paladin/Bard/Druid/Cleric
+    // Class: characters.Wizard/characters.Paladin/characters.Bard/characters.Druid/characters.Cleric
     protected String characterClass;
 
     // Attributes (based on class): Strength/Wisdom/Intelligence/Charisma
@@ -62,7 +64,7 @@ public abstract class Character {
     public abstract Character createCharacter(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight);
 
     // Abstract method to initialize attributes based on character class
-    protected abstract void initializeAttributes();
+    public abstract void initializeAttributes();
 
     // Method to calculate initial health based on height, weight, and sex
     protected int calculateInitialHealth() {
@@ -103,7 +105,7 @@ public abstract class Character {
     }
 
     /*
-        Getters and setters for all Character attributes
+        Getters and setters for all characters.Character attributes
      */
     public String getSex() {
         return sex;

@@ -1,6 +1,8 @@
+package characters;
+
 public class Druid extends Character {
     public Druid(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Druid");
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "characters.Druid");
     }
 
     @Override
@@ -11,7 +13,7 @@ public class Druid extends Character {
 
     // Total of 31
     @Override
-    protected void initializeAttributes() {
+    public void initializeAttributes() {
         this.strength = 2;
         this.wisdom = 15;
         this.intelligence = 12;

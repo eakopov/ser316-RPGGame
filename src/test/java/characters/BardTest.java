@@ -1,10 +1,12 @@
+package characters;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PaladinTest {
+public class BardTest {
 
-    private final PaladinFactory paladinFactory = new PaladinFactory();
+    private final BardFactory bardFactory = new BardFactory();
 
     @Test
     public void testCharacterSex() {
@@ -17,11 +19,11 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
         assertEquals(sex.toLowerCase(), character.getSex());
     }
 
@@ -36,11 +38,11 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
         assertEquals(hairColor.toLowerCase(), character.getHairColor());
     }
 
@@ -55,11 +57,11 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
         assertEquals(hairLength.toLowerCase(), character.getHairLength());
     }
 
@@ -74,11 +76,11 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
         assertEquals(eyeColor.toLowerCase(), character.getEyeColor());
     }
 
@@ -93,11 +95,11 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
         assertEquals(height.toLowerCase(), character.getHeight());
     }
 
@@ -112,18 +114,18 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
         assertEquals(weight.toLowerCase(), character.getWeight());
     }
 
     @Test
     public void initializeAttributes() {
         // Given
-        Character character = paladinFactory.createCharacter("Male", "Brown", "Short", "Blue", "Average", "Average");
+        Character character = bardFactory.createCharacter("Male", "Brown", "Short", "Blue", "Average", "Average");
 
         // When
         character.initializeAttributes();
@@ -132,7 +134,7 @@ public class PaladinTest {
         assertEquals(15, character.getStrength());
         assertEquals(5, character.getWisdom());
         assertEquals(7, character.getIntelligence());
-        assertEquals(4, character.getCharisma());
+        assertEquals(17, character.getCharisma());
     }
 
     @Test
@@ -146,11 +148,11 @@ public class PaladinTest {
         String weight = "Average";
 
         // When
-        PaladinFactory paladinFactory = new PaladinFactory();
-        Character character = paladinFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
+        BardFactory bardFactory = new BardFactory();
+        Character character = bardFactory.createCharacter(sex, hairColor, hairLength, eyeColor, height, weight);
 
         // Then
         assertNotNull(character);
-        assertTrue(character instanceof Paladin);
+        assertTrue(character instanceof Bard);
     }
 }
