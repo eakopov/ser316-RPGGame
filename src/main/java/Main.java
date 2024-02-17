@@ -1,13 +1,19 @@
 import characters.*;
 import characters.Character;
+import enemies.Enemy;
+import enemies.EnemyFactory;
 
 import java.util.Scanner;
 
 public class Main {
-    public int floor;
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
+    public static int floor;
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        floor = 1;
+        Scanner scanner = new Scanner(System.in);
+        EnemyFactory enemyFactory = new EnemyFactory();
         // Display title card and options
         System.out.println("Welcome to the Dungeon Crawler Game!");
         System.out.println("Options:");
@@ -35,7 +41,9 @@ public class Main {
             System.out.println("Skill: " + character.getSkill());
             System.out.println("Health: " + character.getHealth());
 
-
+            System.out.println("Floor " + floor);
+            System.out.println("Your turn, " + character.getName() + "!");
+            Enemy enemy = enemyFactory.createEnemy("goblin");
         } else if (choice == 2) {
             // Exit the game
             System.out.println("Exiting the game. Goodbye!");
@@ -84,7 +92,4 @@ public class Main {
         return characterFactory.createCharacter(name, sex, hairColor, hairLength, eyeColor, height, weight, characterClass, characterRace);
     }
 
-    public int getFloor() {
-        return floor;
-    }
 }
