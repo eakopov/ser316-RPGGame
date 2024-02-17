@@ -8,9 +8,14 @@ import java.util.Scanner;
 public class Main {
 
     public static int floor;
+    public static int totalHP;
+    public static int totalMana;
+    public static int Q1;
+    public static int Q2;
+    public static int Q3;
+    public static int Q4;
 
     public static void main(String[] args) {
-        Main main = new Main();
         floor = 1;
         Scanner scanner = new Scanner(System.in);
         EnemyFactory enemyFactory = new EnemyFactory();
@@ -27,6 +32,8 @@ public class Main {
         if (choice == 1) {
             // Start character creation
             Character character = createCharacter(scanner);
+            totalHP = character.getHealth();
+            totalMana = character.getMana();
 
             // Access specific properties of the character
             System.out.printf("\n%s Stats:\n", character.getName());
@@ -44,6 +51,37 @@ public class Main {
             System.out.println("Floor " + floor);
             System.out.println("Your turn, " + character.getName() + "!");
             Enemy enemy = enemyFactory.createEnemy("goblin");
+
+            /* To do! */
+
+            if((double)character.getHealth() < (0.15 * (double)(totalHP))) {
+                character.setHealth(totalHP);
+                character.setMana(totalMana);
+
+                // Print player status
+                System.out.printf("\n%s Stats:\n", character.getName());
+                System.out.printf("%s is of %s height and %s weight. They have\n%s eyes and %s length hair that is %s in color.\n", character.getName(), character.getHeight(), character.getWeight(), character.getEyeColor(), character.getHairLength(), character.getHairColor());
+                System.out.println("Class: " + character.getCharacterClass());
+                System.out.println("Race: " + character.getCharacterRace());
+                System.out.println("XP: " + character.getXP());
+                System.out.println("Attack: " + character.getAttack());
+                System.out.println("Defense: " + character.getDefense());
+                System.out.println("Mana: " + character.getMana());
+                System.out.println("Speed: " + character.getSpeed());
+                System.out.println("Skill: " + character.getSkill());
+                System.out.println("Health: " + character.getHealth());
+                System.out.println();
+                System.out.println("Options:");
+                System.out.println("1. Cave");
+                System.out.println("2. Shop");
+                System.out.println("3. Exit");
+
+                // Prompt user for choice
+                System.out.print("Enter your choice: ");
+                int x = scanner.nextInt();
+
+
+            }
         } else if (choice == 2) {
             // Exit the game
             System.out.println("Exiting the game. Goodbye!");
