@@ -5,6 +5,7 @@ public class Enemy {
     private int health;
     private int attack;
     private int level;
+    private boolean status = false;
 
     public Enemy(String type, int health, int attack, int level) {
         this.type = type;
@@ -45,5 +46,12 @@ public class Enemy {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public boolean isDead(){
+        if(health < 1){
+            status = true;
+        }
+        return status;
     }
 }
