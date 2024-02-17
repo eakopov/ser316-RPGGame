@@ -1,23 +1,16 @@
 package characters;
 
 public class Druid extends Character {
-    public Druid(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Druid");
+    public Druid(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "Druid", race);
     }
 
+    // Initialize attack, mana, and defense based on class.
     @Override
-    public Character createCharacter(String sex, String hairColor, String hairLength,
-                                     String eyeColor, String height, String weight) {
-        return new Druid(sex, hairColor, hairLength, eyeColor, height, weight);
-    }
-
-    // Total of 31
-    @Override
-    public void initializeAttributes() {
-        this.strength = 2;
-        this.wisdom = 15;
-        this.intelligence = 12;
-        this.charisma = 2;
+    public void initializeStats() {
+        this.attack = 8;
+        this.mana = 12;
+        this.defense = 7;
     }
 
 }

@@ -1,23 +1,16 @@
 package characters;
 
 public class Paladin extends Character {
-    public Paladin(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Paladin");
+    public Paladin(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "Paladin", race);
     }
 
+    // Initialize attack, mana, and defense based on class.
     @Override
-    public Character createCharacter(String sex, String hairColor, String hairLength,
-                                     String eyeColor, String height, String weight) {
-        return new Paladin(sex, hairColor, hairLength, eyeColor, height, weight);
-    }
-
-    // Total of 31
-    @Override
-    public void initializeAttributes() {
-        this.strength = 15;
-        this.wisdom = 5;
-        this.intelligence = 7;
-        this.charisma = 4;
+    public void initializeStats() {
+        this.attack = 14;
+        this.mana = 2;
+        this.defense = 14;
     }
 
 }

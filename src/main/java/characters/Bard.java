@@ -1,23 +1,16 @@
 package characters;
 
 public class Bard extends Character {
-    public Bard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Bard");
+    public Bard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
+        super(sex, hairColor, hairLength, eyeColor, height, weight, "Bard", race);
     }
 
+    // Initialize attack, mana, and defense based on class.
     @Override
-    public Character createCharacter(String sex, String hairColor, String hairLength,
-                                     String eyeColor, String height, String weight) {
-        return new Bard(sex, hairColor, hairLength, eyeColor, height, weight);
-    }
-
-    // Total of 31
-    @Override
-    public void initializeAttributes() {
-        this.strength = 15;
-        this.wisdom = 5;
-        this.intelligence = 7;
-        this.charisma = 17;
+    public void initializeStats() {
+        this.attack = 5;
+        this.mana = 15;
+        this.defense = 7;
     }
 
 }

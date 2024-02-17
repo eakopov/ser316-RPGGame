@@ -1,8 +1,8 @@
 package characters;
 
 /**
- * This abstract class defines the basic attributes and behaviors of a character in the game,
- * including their physical appearance, class, attributes, health, and experience points.
+ * This abstract class defines the basic stats and behaviors of a character in the game,
+ * including their physical appearance, class, stats, health, and experience points.
  * Subclasses of Character will provide concrete implementations for specific character classes.
  *
  * @author Elizabeth Akopov
@@ -10,6 +10,10 @@ package characters;
  */
 
 public abstract class Character {
+
+    // Name: Character's name
+    protected String name;
+
     // Sex: Male/Female
     protected String sex;
 
@@ -31,21 +35,20 @@ public abstract class Character {
     // Class: Wizard/Paladin/Bard/Druid/Cleric
     protected String characterClass;
 
-    // Attributes (based on class): Strength/Wisdom/Intelligence/Charisma
-    protected int strength;
-    protected int wisdom;
-    protected int intelligence;
-    protected int charisma;
+    // Race: Human/Elf/Orc/Dwarf/Tiefling
+    protected String characterRace;
 
-    // Health: an integer, starts based off their height, weight, and sex
+    // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed
+    protected int attack;
     protected int health;
-
-    // XP (experience points): an integer, starts at 0 and increases based on fights with enemies
-    protected int experiencePoints;
+    protected int mana;
+    protected int defense;
+    protected int xp;
+    protected int speed;
 
     // Constructor
     protected Character(String sex, String hairColor, String hairLength, String eyeColor,
-                     String height, String weight, String characterClass) {
+                        String height, String weight, String characterClass, String characterRace) {
         this.sex = sex.toLowerCase();
         this.hairColor = hairColor.toLowerCase();
         this.hairLength = hairLength.toLowerCase();
@@ -53,18 +56,15 @@ public abstract class Character {
         this.height = height.toLowerCase();
         this.weight = weight.toLowerCase();
         this.characterClass = characterClass.toLowerCase();
-        // Calculate initial health based on height, weight, and sex
+        this.characterRace = characterRace.toLowerCase();
+        // Calculate initial health based on height, weight, class, race, etc
         this.health = calculateInitialHealth();
-        this.experiencePoints = 0;
-        // Initialize attributes based on character class
-        initializeAttributes();
+        // Calculate initial stats based on class and race
+        initializeStats();
     }
 
-    // Factory method for character creation
-    public abstract Character createCharacter(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight);
-
-    // Abstract method to initialize attributes based on character class
-    public abstract void initializeAttributes();
+    // Abstract method to initialize stats based on character class
+    public abstract void initializeStats();
 
     // Method to calculate initial health based on height, weight, and sex
     protected int calculateInitialHealth() {
@@ -105,7 +105,7 @@ public abstract class Character {
     }
 
     /*
-        Getters and setters for all Character attributes
+        Getters and setters for all Character stats
      */
     public String getSex() {
         return sex;
@@ -163,36 +163,36 @@ public abstract class Character {
         this.characterClass = characterClass;
     }
 
-    public int getStrength() {
-        return strength;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
-    public int getWisdom() {
-        return wisdom;
+    public int getMana() {
+        return mana;
     }
 
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 
-    public int getIntelligence() {
-        return intelligence;
+    public int getDefense() {
+        return defense;
     }
 
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
+    public void setDefense(int defense) {
+        this.defense = defense;
     }
 
-    public int getCharisma() {
-        return charisma;
+    public int getSpeed() {
+        return speed;
     }
 
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public int getHealth() {
@@ -203,11 +203,11 @@ public abstract class Character {
         this.health = health;
     }
 
-    public int getExperiencePoints() {
-        return experiencePoints;
+    public int getXP() {
+        return xp;
     }
 
-    public void setExperiencePoints(int experiencePoints) {
-        this.experiencePoints = experiencePoints;
+    public void setXP(int xp) {
+        this.xp = xp;
     }
 }
