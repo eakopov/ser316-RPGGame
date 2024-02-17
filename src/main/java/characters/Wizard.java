@@ -1,8 +1,8 @@
 package characters;
 
 public class Wizard extends Character {
-    public Wizard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Wizard", race);
+    public Wizard(String name, String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
+        super(name, sex, hairColor, hairLength, eyeColor, height, weight, "Wizard", race);
     }
 
     // Initialize attack, mana, and defense based on class.

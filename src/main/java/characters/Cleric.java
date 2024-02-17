@@ -1,8 +1,8 @@
 package characters;
 
 public class Cleric extends Character {
-    public Cleric(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Cleric", race);
+    public Cleric(String name, String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
+        super(name, sex, hairColor, hairLength, eyeColor, height, weight, "Cleric", race);
     }
 
     // Initialize attack, mana, and defense based on class.

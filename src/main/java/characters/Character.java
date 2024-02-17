@@ -38,17 +38,19 @@ public abstract class Character {
     // Race: Human/Elf/Orc/Dwarf/Tiefling
     protected String characterRace;
 
-    // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed
+    // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed/Skill
     protected int attack;
     protected int health;
     protected int mana;
     protected int defense;
     protected int xp;
     protected int speed;
+    protected String skill;
 
     // Constructor
-    protected Character(String sex, String hairColor, String hairLength, String eyeColor,
+    protected Character(String name, String sex, String hairColor, String hairLength, String eyeColor,
                         String height, String weight, String characterClass, String characterRace) {
+        this.name = name;
         this.sex = sex.toLowerCase();
         this.hairColor = hairColor.toLowerCase();
         this.hairLength = hairLength.toLowerCase();
@@ -107,6 +109,11 @@ public abstract class Character {
     /*
         Getters and setters for all Character stats
      */
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
     public String getSex() {
         return sex;
     }
@@ -163,6 +170,14 @@ public abstract class Character {
         this.characterClass = characterClass;
     }
 
+    public String getCharacterRace() {
+        return characterRace;
+    }
+
+    public void setCharacterRace(String characterRace) {
+        this.characterRace = characterRace;
+    }
+
     public int getAttack() {
         return attack;
     }
@@ -210,4 +225,8 @@ public abstract class Character {
     public void setXP(int xp) {
         this.xp = xp;
     }
+
+    public String getSkill() { return skill; }
+
+    public void setSkill(String skill) { this.skill = skill; }
 }

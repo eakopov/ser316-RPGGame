@@ -1,8 +1,8 @@
 package characters;
 
 public class Bard extends Character {
-    public Bard(String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
-        super(sex, hairColor, hairLength, eyeColor, height, weight, "Bard", race);
+    public Bard(String name, String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
+        super(name, sex, hairColor, hairLength, eyeColor, height, weight, "Bard", race);
     }
 
     // Initialize attack, mana, and defense based on class.

@@ -1,19 +1,34 @@
 package characters;
 
 public class CharacterFactory {
-    public Character createCharacter(String characterType, String race) {
-        if (characterType.equalsIgnoreCase("Druid")) {
-            return new Druid(race);
-        } else if (characterType.equalsIgnoreCase("Bard")) {
-            return new Bard(race);
-        } else if (characterType.equalsIgnoreCase("Cleric")) {
-            return new Cleric(race);
-        } else if (characterType.equalsIgnoreCase("Paladin")) {
-            return new Paladin(race);
-        } else if (characterType.equalsIgnoreCase("Wizard")) {
-            return new Wizard(race);
-        } else {
-            throw new IllegalArgumentException("Invalid character type: " + characterType);
+    public Character createCharacter(String name, String sex, String hairColor, String hairLength, String eyeColor,
+                                     String height, String weight, String characterClass, String characterRace) {
+        Character character;
+
+        // Create character based on class
+        switch (characterClass.toLowerCase()) {
+            case "druid":
+                character = new Druid(name, sex, hairColor, hairLength, eyeColor, height, weight, characterRace);
+                break;
+            case "bard":
+                character = new Bard(name, sex, hairColor, hairLength, eyeColor, height, weight, characterRace);
+                break;
+            case "cleric":
+                character = new Cleric(name, sex, hairColor, hairLength, eyeColor, height, weight, characterRace);
+                break;
+            case "paladin":
+                character = new Paladin(name, sex, hairColor, hairLength, eyeColor, height, weight, characterRace);
+                break;
+            case "wizard":
+                character = new Wizard(name, sex, hairColor, hairLength, eyeColor, height, weight, characterRace);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid character class: " + characterClass);
         }
+
+        // Initialize stats based on class and race
+        character.initializeStats();
+
+        return character;
     }
 }

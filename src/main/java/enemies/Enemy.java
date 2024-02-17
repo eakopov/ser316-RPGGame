@@ -5,7 +5,9 @@ public class Enemy {
     private int health;
     private int attack;
 
-    public Enemy(String type, int health, int attack) {
+    private int level;
+
+    public Enemy(String type, int health, int attack, int level) {
         this.type = type;
         this.health = health;
         this.attack = attack;
