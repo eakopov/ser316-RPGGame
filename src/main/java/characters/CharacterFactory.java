@@ -26,9 +26,6 @@ public class CharacterFactory {
                 throw new IllegalArgumentException("Invalid character class: " + characterClass);
         }
 
-        // Initialize stats based on class and race
-        character.initializeStats();
-
         return character;
     }
 }

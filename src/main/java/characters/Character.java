@@ -89,7 +89,7 @@ public abstract class Character {
         if(weight.equals("slim")){
             // Slim -= 2 HP
             HP -= 2;
-        } else if(weight.equals("average")){
+        } else if(weight.equals("large")){
             // Large += 2 HP
             HP += 2;
         } // Average = no change

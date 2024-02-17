@@ -7,6 +7,6 @@ public class MainTest {
     public void testMain() {
         Main main = new Main();
 
-        assertEquals(3, main.random);
+        assertEquals(0, main.floor);
     }
 }
