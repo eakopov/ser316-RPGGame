@@ -1,4 +1,10 @@
 package items;
 
-public class Boots {
+import java.util.Random;
+
+class Boots extends Armor {
+    public Boots(String name) {
+        super(name);
+    }
+
 }
