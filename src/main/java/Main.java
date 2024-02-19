@@ -2,6 +2,7 @@ import attack.*;
 import characters.*;
 import characters.Character;
 import enemies.Enemy;
+import enemies.EnemyDecorator;
 import enemies.EnemyFactory;
 import enemies.Floor;
 
@@ -179,12 +180,17 @@ public class Main {
         } else if(choice == 2) {
             int money = cave();
             inventory.addMoney(money);
+            character.setHealth(totalHP);
+            character.setMana(totalMana);
+            menu();
         } else {
             System.exit(0);
         }
     }
 
     public static int cave() {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
         int money = 0;
         double dying = character.getHealth() * 0.15;
         Floor.setFloor(1);
@@ -193,15 +199,35 @@ public class Main {
 
 
         while(character.getHealth() > dying){
+            EnemyFactory enemy = new EnemyFactory();
             if(Floor.getFloor() % 3 == 0) {
                 int part = (Cycle.getPart() % 4) + 1;
                 Cycle.setPart(part);
                 System.out.println("Part Status Effect: " + Cycle.cycleEffect(part));
             }
 
+            if(Floor.getFloor() == 100){
+                //bossFight();
+            }
             if(Floor.getFloor() % 10 == 0){
+                Enemy orc = enemy.createEnemy("orc");
+                AttackDecorator enemyAttack = new AttackDecorator(orc.getAttack(), 0.1, 0.25);
+                AttackDecorator charAttack = new AttackDecorator(character.getAttack(), 0.25, 0.1);
 
+                System.out.println("You've encountered an orc! They are the most difficult of them all.");
+                display();
+                choice = scanner.nextInt();
 
+                while(!orc.isDead()) {
+                    if (choice == 1) {
+
+                    } else if (choice == 2) {
+
+                    } else {
+                        System.out.println("Error: invalid choice! Please choose either 1 or 2.");
+                        display();
+                    }
+                }
             } else if (Floor.getFloor() % 5 == 0) {
 
             } else {
@@ -214,4 +240,15 @@ public class Main {
         return money;
     }
 
+    public static void display() {
+        System.out.println("---------------------");
+        System.out.println("| FLOOR NUMBER: " + Floor.getFloor() + "   |");
+        System.out.println("---------------------");
+        System.out.println("Effect Status: " + Cycle.cycleEffect(Cycle.getPart()));
+        System.out.println("Your health: " + character.getHealth());
+        System.out.println("Your mana: " + character.getMana());
+        System.out.println("What do you want to do?");
+        System.out.println("1. Attack");
+        System.out.println("2. Inventory");
+    }
 }

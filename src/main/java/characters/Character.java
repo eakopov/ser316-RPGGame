@@ -40,8 +40,8 @@ public abstract class Character {
 
     // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed/Skill
     protected int attack;
-    protected int health;
-    protected int mana;
+    protected static int health;
+    protected static int mana;
     protected int defense;
     protected int xp;
     protected int speed;
@@ -60,7 +60,7 @@ public abstract class Character {
         this.characterClass = characterClass.toLowerCase();
         this.characterRace = characterRace.toLowerCase();
         // Calculate initial health based on height, weight, class, race, etc
-        this.health = calculateInitialHealth();
+        health = calculateInitialHealth();
         // Calculate initial stats based on class and race
         initializeStats();
     }
@@ -195,7 +195,7 @@ public abstract class Character {
     }
 
     public static void setMana(int mana) {
-        this.mana = mana;
+        Character.mana = mana;
     }
 
     public int getDefense() {
@@ -219,7 +219,7 @@ public abstract class Character {
     }
 
     public static void setHealth(int health) {
-        this.health = health;
+        Character.health = health;
     }
 
     public int getXP() {

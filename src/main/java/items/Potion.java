@@ -44,7 +44,7 @@ public class Potion extends Item {
                 throw new IllegalArgumentException("Invalid item condition: " + condition);
         }
 
-        if(name.toLowerCase().equals("health")){
+        if(name.toLowerCase().equals("health")) {
             Character.setHealth(Character.getHealth() + amount);
         }
         if(name.toLowerCase().equals("mana")){
