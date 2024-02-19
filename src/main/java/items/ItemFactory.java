@@ -1,16 +1,16 @@
 package items;
 
 public class ItemFactory {
-    public Item createItem(String itemType, String itemName) {
-        switch (itemType.toLowerCase()) {
+    public Item createItem(String itemName, String itemCondition) {
+        switch (itemName.toLowerCase()) {
             case "armor":
-                return new Armor(itemName);
+                return new ArmorFactory().createArmor(itemName, itemCondition);
             case "potion":
-                return new Potion(itemName);
+                //return new Potion(itemName, itemCondition);
             case "money":
-                return new Money(itemName);
+                //return new Money(itemName, itemCondition);
             default:
-                throw new IllegalArgumentException("Invalid item type: " + itemType);
+                throw new IllegalArgumentException("Invalid item type: " + itemName);
         }
     }
 }

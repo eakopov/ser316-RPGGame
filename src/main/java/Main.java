@@ -49,7 +49,8 @@ public class Main {
             System.out.println("Your turn, " + character.getName() + "!");
             Enemy enemy = enemyFactory.createEnemy("goblin");
             Attack enemyAttack = new AttackDecorator(enemy.getAttack(), 0.2, 0.1);
-
+            System.out.println("You are unfortunately greeted by a nasty goblin, and you cannot escape this fight!");
+            System.out.println("Let's test your wits and see what you've got, " + character.getName() + "!");
             while(!enemy.isDead()){
                 System.out.println("1. Attack");
                 System.out.println("2. Inventory");
@@ -60,14 +61,21 @@ public class Main {
                     int damage = charAttack.performAttack();
                     System.out.println(character.getName() + " does " + damage + " damage!");
                     enemy.setHealth(enemy.getHealth() - damage);
+
+                    if(enemy.getHealth() > 0){
+                        System.out.println("The " + enemy.getType() + " is not dead yet!");
+                        System.out.println("The " + enemy.getType() + " attempts to attack.");
+                        character.setHealth(character.getHealth() - enemyAttack.performAttack());
+                    }
                 } else if (choice == 2) {
                     System.out.println("Inventory is empty.");
                 }
             }
 
-            System.out.println("Congratulations on completing the first round! Welcome to the Dungeon Crawler game.");
+            System.out.println("Congratulations on defeating the goblin! Welcome to the Dungeon Crawler game.");
             System.out.println("This is a turn-based dungeon game where you'll venture deeper into a cave,");
-            System.out.println("and as you progress, the difficulty will increase, but you'll also gain access to cool potions, armor, and money.");
+            System.out.println("and as you progress, you fight monsters, similar to the one you just defeated!");
+            System.out.println("The difficulty will increase as you go, but you'll also gain access to cool potions, armor, and money.");
             System.out.println("When you exit the cave, you have the option to either visit the shop to purchase items or continue your journey into the cave.");
             System.out.println("What will you choose?");
             System.out.println("1. Go to the Shop");
