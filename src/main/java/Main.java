@@ -8,7 +8,8 @@ import enemies.Floor;
 import java.util.Scanner;
 
 public class Main {
-
+    static Character character;
+    static Inventory inventory;
     public static int floor;
     public static int totalHP;
     public static int totalMana;
@@ -30,7 +31,8 @@ public class Main {
 
         if (choice == 1) {
             // Start character creation
-            Character character = createCharacter(scanner);
+            character = createCharacter(scanner);
+            inventory = new Inventory();
             totalHP = character.getHealth();
             totalMana = character.getMana();
 
@@ -79,20 +81,8 @@ public class Main {
             System.out.println("and as you progress, you fight monsters, similar to the one you just defeated!");
             System.out.println("The difficulty will increase as you go, but you'll also gain access to cool potions, armor, and money.");
             System.out.println("When you exit the cave, you have the option to either visit the shop to purchase items or continue your journey into the cave.");
-            System.out.println("What will you choose?");
-            System.out.println("1. Go to the Shop");
-            System.out.println("2. Go into the Cave");
-            System.out.println("3. Leave and never return (exit)");
 
-            choice = scanner.nextInt();
-
-            if(choice == 1){
-                System.out.println("implement shop");
-            } else if(choice == 2) {
-                System.out.println("implement cave");
-            } else {
-                System.exit(0);
-            }
+            menu();
 
 //            if((double)character.getHealth() < (0.15 * (double)(totalHP))) {
 //                character.setHealth(totalHP);
@@ -168,6 +158,60 @@ public class Main {
         // Create character using CharacterFactory
         CharacterFactory characterFactory = new CharacterFactory();
         return characterFactory.createCharacter(name, sex, hairColor, hairLength, eyeColor, height, weight, characterClass, characterRace);
+    }
+
+    public static void menu() {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        System.out.println("What will you choose?");
+        System.out.println("1. Go to the Shop");
+        System.out.println("2. Go into the Cave");
+        System.out.println("3. Leave and never return (exit)");
+
+        choice = scanner.nextInt();
+
+        if(choice == 1){
+            Shop.displayItems();
+            choice = scanner.nextInt();
+            if(choice == 5) {
+                menu();
+            }
+        } else if(choice == 2) {
+            int money = cave();
+            inventory.addMoney(money);
+        } else {
+            System.exit(0);
+        }
+    }
+
+    public static int cave() {
+        int money = 0;
+        double dying = character.getHealth() * 0.15;
+        Floor.setFloor(1);
+        Cycle.setPart(1);
+        int count = 1;
+
+
+        while(character.getHealth() > dying){
+            if(Floor.getFloor() % 3 == 0) {
+                int part = (Cycle.getPart() % 4) + 1;
+                Cycle.setPart(part);
+                System.out.println("Part Status Effect: " + Cycle.cycleEffect(part));
+            }
+
+            if(Floor.getFloor() % 10 == 0){
+
+
+            } else if (Floor.getFloor() % 5 == 0) {
+
+            } else {
+
+            }
+            count++;
+            Floor.setFloor(count);
+            money += (count / 2);
+        }
+        return money;
     }
 
 }

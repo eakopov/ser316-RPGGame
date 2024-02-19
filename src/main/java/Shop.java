@@ -6,14 +6,15 @@ import java.util.Random;
 
 public class Shop {
     private final int ITEM_PRICE = 4;
-    private final int ALL_ITEMS_PRICE = 10;
+    private static final int ALL_ITEMS_PRICE = 10;
 
-    public void displayItems() {
+    public static void displayItems() {
         System.out.println("Items Available in the Shop:");
         System.out.println("1. Armor");
         System.out.println("2. Health Potion");
         System.out.println("3. Mana Potion");
         System.out.println("4. Buy All Items for " + ALL_ITEMS_PRICE + " money");
+        System.out.println("5. Exit shop");
     }
 
     public void buyItem(int choice, Inventory inventory) {

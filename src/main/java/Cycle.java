@@ -9,7 +9,7 @@ public class Cycle {
         Cycle.part = part;
     }
 
-    public String cycleEffect(int part) {
+    public static String cycleEffect(int part) {
         String effect = "";
 
         if(part == 1) {
