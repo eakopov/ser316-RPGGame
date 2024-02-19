@@ -7,4 +7,5 @@ public abstract class Item {
         this.name = name;
     }
 
+    public abstract String getName();
 }

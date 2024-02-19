@@ -3,6 +3,8 @@ import characters.*;
 import characters.Character;
 import enemies.Enemy;
 import enemies.EnemyFactory;
+import enemies.Floor;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +14,7 @@ public class Main {
     public static int totalMana;
 
     public static void main(String[] args) {
-        floor = 1;
+        floor = Floor.getFloor();
         Cycle.part = 1;
         Scanner scanner = new Scanner(System.in);
         EnemyFactory enemyFactory = new EnemyFactory();

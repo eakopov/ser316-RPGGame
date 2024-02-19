@@ -6,7 +6,7 @@ public class ItemFactory {
             case "armor":
                 return new ArmorFactory().createArmor(itemName, itemCondition);
             case "potion":
-                //return new Potion(itemName, itemCondition);
+                return new Potion(itemName, itemCondition);
             case "money":
                 //return new Money(itemName, itemCondition);
             default:

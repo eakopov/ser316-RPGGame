@@ -74,10 +74,10 @@ public abstract class Character {
         int HP = 0;
 
         // Height
-        if(height.equals("short")){
+        if (height.equals("short")) {
             // Short = Base HP 5
             HP += 5;
-        } else if(height.equals("average")){
+        } else if (height.equals("average")) {
             // Average = Base HP 7
             HP += 7;
         } else {
@@ -86,16 +86,16 @@ public abstract class Character {
         }
 
         // Weight
-        if(weight.equals("slim")){
+        if (weight.equals("slim")) {
             // Slim -= 2 HP
             HP -= 2;
-        } else if(weight.equals("large")){
+        } else if (weight.equals("large")) {
             // Large += 2 HP
             HP += 2;
         } // Average = no change
 
         // Sex
-        if(sex.equals("male")){
+        if (sex.equals("male")) {
             // male HP++;
             HP++;
         } else {
@@ -110,9 +110,13 @@ public abstract class Character {
         Getters and setters for all Character stats
      */
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getSex() {
         return sex;
@@ -186,11 +190,11 @@ public abstract class Character {
         this.attack = attack;
     }
 
-    public int getMana() {
+    public static int getMana() {
         return mana;
     }
 
-    public void setMana(int mana) {
+    public static void setMana(int mana) {
         this.mana = mana;
     }
 
@@ -210,11 +214,11 @@ public abstract class Character {
         this.speed = speed;
     }
 
-    public int getHealth() {
+    public static int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    public static void setHealth(int health) {
         this.health = health;
     }
 
@@ -226,7 +230,11 @@ public abstract class Character {
         this.xp = xp;
     }
 
-    public String getSkill() { return skill; }
+    public String getSkill() {
+        return skill;
+    }
 
-    public void setSkill(String skill) { this.skill = skill; }
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
 }

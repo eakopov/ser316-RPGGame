@@ -39,4 +39,14 @@ public class Helmet extends Armor {
         System.out.println("Attack bonus: " + attackBonus);
         System.out.println("Defense bonus: " + defenseBonus);
     }
+
+    @Override
+    public String getCondition() {
+        return condition;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }
