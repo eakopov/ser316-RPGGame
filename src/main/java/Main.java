@@ -44,9 +44,11 @@ public class Main {
 
             // Access specific properties of the character
             System.out.printf("\n%s Stats:\n", character.getName());
-            System.out.printf("%s is of %s height and %s weight. They have\n%s eyes and %s length hair that is %s in color.\n", character.getName(), character.getHeight(), character.getWeight(), character.getEyeColor(), character.getHairLength(), character.getHairColor());
+            System.out.println("______________________");
             System.out.println("Class: " + character.getCharacterClass());
             System.out.println("Race: " + character.getCharacterRace());
+            System.out.println("Height: " + character.getHeight());
+            System.out.println("Weight: " + character.getWeight());
             System.out.println("XP: " + character.getXP());
             System.out.println("Attack: " + character.getAttack());
             System.out.println("Defense: " + character.getDefense());
@@ -54,9 +56,7 @@ public class Main {
             System.out.println("Speed: " + character.getSpeed());
             System.out.println("Skill: " + character.getSkill());
             System.out.println("Health: " + character.getHealth());
-
-            System.out.println("Floor " + floor);
-            System.out.println("Your turn, " + character.getName() + "!");
+            System.out.println("______________________");
             Enemy enemy = enemyFactory.createEnemy("goblin");
             Attack enemyAttack = new AttackDecorator(enemy.getAttack(), 0.2, 0.1);
             System.out.println("You are unfortunately greeted by a nasty goblin, and you cannot escape this fight!");
@@ -90,34 +90,6 @@ public class Main {
 
             menu();
 
-//            if((double)character.getHealth() < (0.15 * (double)(totalHP))) {
-//                character.setHealth(totalHP);
-//                character.setMana(totalMana);
-//
-//                // Print player status
-//                System.out.printf("\n%s Stats:\n", character.getName());
-//                System.out.printf("%s is of %s height and %s weight. They have\n%s eyes and %s length hair that is %s in color.\n", character.getName(), character.getHeight(), character.getWeight(), character.getEyeColor(), character.getHairLength(), character.getHairColor());
-//                System.out.println("Class: " + character.getCharacterClass());
-//                System.out.println("Race: " + character.getCharacterRace());
-//                System.out.println("XP: " + character.getXP());
-//                System.out.println("Attack: " + character.getAttack());
-//                System.out.println("Defense: " + character.getDefense());
-//                System.out.println("Mana: " + character.getMana());
-//                System.out.println("Speed: " + character.getSpeed());
-//                System.out.println("Skill: " + character.getSkill());
-//                System.out.println("Health: " + character.getHealth());
-//                System.out.println();
-//                System.out.println("Options:");
-//                System.out.println("1. Cave");
-//                System.out.println("2. Shop");
-//                System.out.println("3. Exit");
-//
-//                // Prompt user for choice
-//                System.out.print("Enter your choice: ");
-//                int x = scanner.nextInt();
-//
-//
-//            }
         } else if (choice == 2) {
             // Exit the game
             System.out.println("Exiting the game. Goodbye!");
@@ -140,15 +112,6 @@ public class Main {
         System.out.print("Enter sex (Male/Female): ");
         String sex = scanner.next();
 
-        System.out.print("Enter hair color (Brown/Blonde/Black/red): ");
-        String hairColor = scanner.next();
-
-        System.out.print("Enter hair length (None/Short/Medium/Long): ");
-        String hairLength = scanner.next();
-
-        System.out.print("Enter eye color (Green/Blue/Gray/Hazel): ");
-        String eyeColor = scanner.next();
-
         System.out.print("Enter height (Short/Average/Tall): ");
         String height = scanner.next();
 
@@ -163,7 +126,7 @@ public class Main {
 
         // Create character using CharacterFactory
         CharacterFactory characterFactory = new CharacterFactory();
-        return characterFactory.createCharacter(name, sex, hairColor, hairLength, eyeColor, height, weight, characterClass, characterRace);
+        return characterFactory.createCharacter(name, sex, height, weight, characterClass, characterRace);
     }
 
     public static void menu() {
@@ -179,9 +142,7 @@ public class Main {
         if(choice == 1){
             Shop.displayItems();
             choice = scanner.nextInt();
-            if(choice == 5) {
-                menu();
-            }
+            Shop.buyItem(choice, inventory);
         } else if(choice == 2) {
             int money = cave();
             inventory.addMoney(money);
@@ -198,7 +159,7 @@ public class Main {
         ArmorFactory armor = new ArmorFactory();
         ItemFactory items = new ItemFactory();
         int choice;
-        Money money = (Money) items.createItem("Money", null);
+        Money money = new Money();
         money.setMoney(0);
         double dying = character.getHealth() * 0.15;
         Floor.setFloor(1);
@@ -228,9 +189,24 @@ public class Main {
 
                 while(!orc.isDead()) {
                     if (choice == 1) {
-
+                        // attack
                     } else if (choice == 2) {
+                        // inventory
+                        inventory.displayInventory();
+                        System.out.println("What would you like to do?");
+                        if(inventory.getPotions().isEmpty()){
+                            System.out.println("Go back.");
+                        } else {
+                            System.out.println("1. Use Potion");
+                            System.out.println("2. Go back.");
 
+                            choice = scanner.nextInt();
+                            if(choice == 1){
+                                System.out.println("Which one?");
+                                choice = scanner.nextInt();
+                                inventory.usePotion(choice);
+                            }
+                        }
                     } else {
                         System.out.println("Error: invalid choice! Please choose either 1 or 2.");
                         display();

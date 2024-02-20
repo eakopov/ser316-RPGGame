@@ -1,73 +1,81 @@
 import enemies.Floor;
 import items.*;
-
+import items.Armor;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Shop {
-    private final int ITEM_PRICE = 4;
-    private static final int ALL_ITEMS_PRICE = 10;
+    private static int itemPrice = 4;
+    private static final int priceAll = 10;
+
+    protected static ItemFactory item = new ItemFactory();
 
     public static void displayItems() {
         System.out.println("Items Available in the Shop:");
         System.out.println("1. Armor");
         System.out.println("2. Health Potion");
         System.out.println("3. Mana Potion");
-        System.out.println("4. Buy All Items for " + ALL_ITEMS_PRICE + " money");
+        System.out.println("4. Buy All Items for " + priceAll + " money");
         System.out.println("5. Exit shop");
     }
 
-    public void buyItem(int choice, Inventory inventory) {
+    public static void buyItem(int choice, Inventory inventory) {
         switch (choice) {
             case 1:
-                Armor armor = returnArmor();
-                System.out.println("You bought " + armor.getName() + " for " + ITEM_PRICE + " money.");
+                Item armor = item.createItem(returnArmor(), generateCondition());
+                System.out.println("You bought " + armor.getName() + " for " + itemPrice + " money.");
                 inventory.addArmor(armor);
-                inventory.addMoney(-ITEM_PRICE);
+                inventory.addMoney(-itemPrice);
                 break;
             case 2:
-                System.out.println("You bought a Health Potion for " + ITEM_PRICE + " money.");
-                inventory.addPotion(healthPotion());
-                inventory.addMoney(-ITEM_PRICE);
+                System.out.println("You bought a Health Potion for " + itemPrice + " money.");
+                String condition = generateCondition();
+                Potion health = new Potion("health", condition);
+                inventory.addPotion(health);
+                inventory.addMoney(-itemPrice);
                 break;
             case 3:
-                System.out.println("You bought a Mana Potion for " + ITEM_PRICE + " money.");
-                inventory.addPotion(manaPotion());
-                inventory.addMoney(-ITEM_PRICE);
+                System.out.println("You bought a Mana Potion for " + itemPrice + " money.");
+                String condition1 = generateCondition();
+                Potion mana = new Potion("mana", condition1);
+                inventory.addPotion(mana);
+                inventory.addMoney(-itemPrice);
                 break;
             case 4:
-                System.out.println("You bought all items for " + ALL_ITEMS_PRICE + " money.");
-                Armor armorItem = returnArmor();
-                inventory.addArmor(armorItem);
-                inventory.addPotion(healthPotion());
-                inventory.addPotion(manaPotion());
-                inventory.addMoney(-ALL_ITEMS_PRICE);
+                System.out.println("You bought all items for " + priceAll + " money.");
+                Item armor1 = item.createItem(returnArmor(), generateCondition());
+                String condition2 = generateCondition();
+                String condition3 = generateCondition();
+                Potion health1 = new Potion("health", condition2);
+                Potion mana1 = new Potion("mana", condition3);
+                inventory.addArmor(armor1);
+                inventory.addPotion(health1);
+                inventory.addPotion(mana1);
+                inventory.addMoney(-priceAll);
                 break;
             default:
-                System.out.println("Invalid choice.");
+                Main.menu();
         }
     }
 
-    private Armor returnArmor() {
+    private static String returnArmor() {
         Random random = new Random();
-
         int randomNumber = random.nextInt(3) + 1;
-        String condition = generateCondition();
 
         switch (randomNumber) {
             case 1:
-                return new Helmet(condition);
+                return "helmet";
             case 2:
-                return new Boots(condition);
+                return "boots";
             case 3:
-                return new Shield(condition);
+                return "shield";
             default:
                 System.out.println("Error: Random Number Generator generating bad numbers :(");
                 return null;
         }
     }
 
-    private String generateCondition() {
+    private static String generateCondition() {
         if (Floor.getFloor() < 10) {
             return "poor";
         } else if (Floor.getFloor() < 50) {
@@ -75,17 +83,5 @@ public class Shop {
         } else {
             return "good";
         }
-    }
-
-    private Potion healthPotion() {
-        String condition = generateCondition();
-        String type = "health";
-        return new Potion(type, condition);
-    }
-
-    private Potion manaPotion() {
-        String condition = generateCondition();
-        String type = "mana";
-        return new Potion(type, condition);
     }
 }

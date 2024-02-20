@@ -1,8 +1,8 @@
 package characters;
 
 public class Paladin extends Character {
-    public Paladin(String name, String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
-        super(name, sex, hairColor, hairLength, eyeColor, height, weight, "Paladin", race);
+    public Paladin(String name, String sex,  String height, String weight, String race) {
+        super(name, sex, height, weight, "Paladin", race);
     }
 
     // Initialize attack, mana, and defense based on class.

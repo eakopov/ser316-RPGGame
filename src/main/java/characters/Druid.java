@@ -1,8 +1,8 @@
 package characters;
 
 public class Druid extends Character {
-    public Druid(String name, String sex, String hairColor, String hairLength, String eyeColor, String height, String weight, String race) {
-        super(name, sex, hairColor, hairLength, eyeColor, height, weight, "Druid", race);
+    public Druid(String name, String sex,  String height, String weight, String race) {
+        super(name, sex, height, weight, "Druid", race);
     }
 
     // Initialize attack, mana, and defense based on class.

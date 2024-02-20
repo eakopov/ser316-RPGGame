@@ -17,15 +17,6 @@ public abstract class Character {
     // Sex: Male/Female
     protected String sex;
 
-    // Hair Color: brown/blonde/black/red
-    protected String hairColor;
-
-    // Hair Length: none/short/medium/long
-    protected String hairLength;
-
-    // Eye Color: green/blue/gray/hazel
-    protected String eyeColor;
-
     // Height: Short/Average/Tall
     protected String height;
 
@@ -48,13 +39,10 @@ public abstract class Character {
     protected String skill;
 
     // Constructor
-    protected Character(String name, String sex, String hairColor, String hairLength, String eyeColor,
+    protected Character(String name, String sex,
                         String height, String weight, String characterClass, String characterRace) {
         this.name = name;
         this.sex = sex.toLowerCase();
-        this.hairColor = hairColor.toLowerCase();
-        this.hairLength = hairLength.toLowerCase();
-        this.eyeColor = eyeColor.toLowerCase();
         this.height = height.toLowerCase();
         this.weight = weight.toLowerCase();
         this.characterClass = characterClass.toLowerCase();
@@ -124,30 +112,6 @@ public abstract class Character {
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public String getHairColor() {
-        return hairColor;
-    }
-
-    public void setHairColor(String hairColor) {
-        this.hairColor = hairColor;
-    }
-
-    public String getHairLength() {
-        return hairLength;
-    }
-
-    public void setHairLength(String hairLength) {
-        this.hairLength = hairLength;
-    }
-
-    public String getEyeColor() {
-        return eyeColor;
-    }
-
-    public void setEyeColor(String eyeColor) {
-        this.eyeColor = eyeColor;
     }
 
     public String getHeight() {

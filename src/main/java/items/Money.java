@@ -1,20 +1,13 @@
 package items;
 
-public class Money extends Item {
+public class Money {
     String name = "Money";
     int money;
 
-    public Money(String name) {
-        super(name);
+    public Money() {
         money = 0;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public void use(int amount) {
         if(amount > money){
             System.out.println("You don't have enough money!");

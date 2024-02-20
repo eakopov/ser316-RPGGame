@@ -10,7 +10,18 @@ public class Shield extends Armor {
         this.condition = condition;
     }
 
-    public void equip() {
+    @Override
+    public String getCondition() {
+        return condition;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void use(int amount) {
         Random random = new Random();
         int defenseBonus;
 
@@ -33,15 +44,5 @@ public class Shield extends Armor {
 
         System.out.println("Shield used with condition: " + condition);
         System.out.println("Defense bonus: " + defenseBonus);
-    }
-
-    @Override
-    public String getCondition() {
-        return condition;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 }

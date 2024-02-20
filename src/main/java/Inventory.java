@@ -1,23 +1,26 @@
 import items.*;
+import items.Money;
 import java.util.ArrayList;
 
 public class Inventory {
-    private int money;
+    private ItemFactory items = new ItemFactory();
+
+    private Money money = new Money();
     private ArrayList<Item> potions;
-    private ArrayList<Armor> armor;
+    private ArrayList<Item> armor;
 
     public Inventory() {
-        this.money = 0;
+        money.setMoney(0);
         this.potions = new ArrayList<>();
         this.armor = new ArrayList<>();
     }
 
     public int getMoney() {
-        return money;
+        return money.getMoney();
     }
 
     public void addMoney(int amount) {
-        this.money += amount;
+        money.add(amount);
     }
 
     public ArrayList<Item> getPotions() {
@@ -28,11 +31,11 @@ public class Inventory {
         this.potions.add(potion);
     }
 
-    public ArrayList<Armor> getArmor() {
+    public ArrayList<Item> getArmor() {
         return armor;
     }
 
-    public void addArmor(Armor armor) {
+    public void addArmor(Item armor) {
         this.armor.add(armor);
     }
 
@@ -41,10 +44,10 @@ public class Inventory {
         System.out.println("Money: " + money);
         System.out.println("Potions:");
         for (Item potion : potions) {
-            System.out.println("- " + potion.getName());
+            System.out.println("- " + potion.getName() + " (" + potion.getCondition() + ")");
         }
         System.out.println("Armor:");
-        for (Armor armor : armor) {
+        for (Item armor : armor) {
             System.out.println("- " + armor.getName() + " (" + armor.getCondition() + ")");
         }
     }
@@ -66,8 +69,8 @@ public class Inventory {
             return;
         }
 
-        Armor armorItem = armor.remove(index);
+        Item armorItem = armor.remove(index);
         System.out.println("Equipping armor: " + armorItem.getName() + " (" + armorItem.getCondition() + ")");
-        // Implement armor equipping logic here
+        armorItem.use(1);
     }
 }

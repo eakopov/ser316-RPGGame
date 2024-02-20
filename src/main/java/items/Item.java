@@ -9,5 +9,7 @@ public abstract class Item {
 
     public abstract String getName();
 
+    public abstract String getCondition();
+
     public abstract void use(int amount);
 }
