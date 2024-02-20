@@ -228,6 +228,9 @@ public class Main {
                         display();
                     }
                 }
+
+                // chest
+                // option to exit cave
             } else if (Floor.getFloor() % 5 == 0) {
 
             } else {
