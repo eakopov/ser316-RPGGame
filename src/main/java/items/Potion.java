@@ -24,7 +24,8 @@ public class Potion extends Item {
         return condition;
     }
 
-    public void use() {
+    @Override
+    public void use(int amount) {
         Random random = new Random();
 
         switch (condition.toLowerCase()) {
@@ -46,9 +47,11 @@ public class Potion extends Item {
 
         if(name.toLowerCase().equals("health")) {
             Character.setHealth(Character.getHealth() + amount);
+            System.out.println("Your health is now: " + Character.getHealth());
         }
         if(name.toLowerCase().equals("mana")){
             Character.setMana(Character.getMana() + amount);
+            System.out.println("Your mana is now: " + Character.getMana());
         }
     }
 }

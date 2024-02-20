@@ -8,4 +8,6 @@ public abstract class Item {
     }
 
     public abstract String getName();
+
+    public abstract void use(int amount);
 }

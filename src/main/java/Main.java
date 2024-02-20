@@ -5,7 +5,12 @@ import enemies.Enemy;
 import enemies.EnemyDecorator;
 import enemies.EnemyFactory;
 import enemies.Floor;
+import items.ArmorFactory;
+import items.Item;
+import items.ItemFactory;
+import items.Money;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -190,8 +195,11 @@ public class Main {
 
     public static int cave() {
         Scanner scanner = new Scanner(System.in);
+        ArmorFactory armor = new ArmorFactory();
+        ItemFactory items = new ItemFactory();
         int choice;
-        int money = 0;
+        Money money = (Money) items.createItem("Money", null);
+        money.setMoney(0);
         double dying = character.getHealth() * 0.15;
         Floor.setFloor(1);
         Cycle.setPart(1);
@@ -229,7 +237,41 @@ public class Main {
                     }
                 }
 
-                // chest
+                System.out.println("Congratulations on winning! You've won a chest containing: ");
+                Random random = new Random();
+                int num = random.nextInt(3) + 1;
+
+                if(num == 1){
+                    inventory.addArmor(armor.createArmor("helmet", "good"));
+                    System.out.println("1x Good Helmet");
+                } else if(num == 2) {
+                    inventory.addArmor(armor.createArmor("boots", "good"));
+                    System.out.println("1x Good Boots");
+                } else if(num == 3) {
+                    inventory.addArmor(armor.createArmor("shield", "good"));
+                } else {
+                    System.out.println("Error: Random variable not initialized properly! :(");
+                }
+
+                inventory.addPotion(items.createItem("health", "good"));
+                System.out.println("1x Good Health Potion");
+                inventory.addPotion(items.createItem("mana", "good"));
+                System.out.println("1x Good Mana Potion");
+                System.out.println("Your current money is: " + money.getMoney());
+                System.out.println("Your current total XP is: " + character.getXP());
+                System.out.println("Do you want to leave the cave?");
+                System.out.println("1. Yes, leave.");
+                System.out.println("2. No, continue.");
+                choice = scanner.nextInt();
+                if(choice == 1){
+                    System.out.println("Leaving the cave now . . .");
+                    return money.getMoney();
+                } else if(choice == 2){
+                    break;
+                } else {
+                    System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
+                    return money.getMoney();
+                }
                 // option to exit cave
             } else if (Floor.getFloor() % 5 == 0) {
 
@@ -238,9 +280,10 @@ public class Main {
             }
             count++;
             Floor.setFloor(count);
-            money += (count / 2);
+            money.add(count / 2);
         }
-        return money;
+        System.out.println("Leaving the cave now . . .");
+        return money.getMoney();
     }
 
     public static void display() {

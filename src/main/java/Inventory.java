@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Inventory {
     private int money;
-    private ArrayList<Potion> potions;
+    private ArrayList<Item> potions;
     private ArrayList<Armor> armor;
 
     public Inventory() {
@@ -20,11 +20,11 @@ public class Inventory {
         this.money += amount;
     }
 
-    public ArrayList<Potion> getPotions() {
+    public ArrayList<Item> getPotions() {
         return potions;
     }
 
-    public void addPotion(Potion potion) {
+    public void addPotion(Item potion) {
         this.potions.add(potion);
     }
 
@@ -40,7 +40,7 @@ public class Inventory {
         System.out.println("Inventory:");
         System.out.println("Money: " + money);
         System.out.println("Potions:");
-        for (Potion potion : potions) {
+        for (Item potion : potions) {
             System.out.println("- " + potion.getName());
         }
         System.out.println("Armor:");
@@ -55,9 +55,9 @@ public class Inventory {
             return;
         }
 
-        Potion potion = potions.remove(index);
+        Item potion = potions.remove(index);
         System.out.println("Using potion: " + potion.getName());
-        // Implement potion usage logic here
+        potion.use(1);
     }
 
     public void equipArmor(int index) {

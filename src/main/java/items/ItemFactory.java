@@ -5,10 +5,10 @@ public class ItemFactory {
         switch (itemName.toLowerCase()) {
             case "armor":
                 return new ArmorFactory().createArmor(itemName, itemCondition);
-            case "potion":
+            case "health", "mana":
                 return new Potion(itemName, itemCondition);
             case "money":
-                //return new Money(itemName, itemCondition);
+                return new Money(itemName);
             default:
                 throw new IllegalArgumentException("Invalid item type: " + itemName);
         }
