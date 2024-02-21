@@ -186,10 +186,10 @@ public class Main {
                 AttackDecorator enemyAttack = new AttackDecorator(orc.getAttack(), 0.1, 0.25);
                 AttackDecorator charAttack = new AttackDecorator(character.getAttack(), 0.25, 0.1);
 
-                System.out.println("You've encountered an orc! They are the most difficult of them all.");
                 display();
+                System.out.println("You've encountered an orc! They are the most difficult of them all.");
 
-                while (!orc.isDead() && character.getHealth() > 0) {
+                while (!orc.isDead() && Character.getHealth() > 0) {
                     choice = scanner.nextInt();
                     if (choice == 1) {
                         // attack
@@ -200,7 +200,7 @@ public class Main {
                         System.out.println("The orc's attack!");
                         int enemyDmg = enemyAttack.performAttack();
                         System.out.println("They did " + enemyDmg + " to you!");
-                        character.setHealth(-enemyDmg);
+                        Character.setHealth(-enemyDmg);
                     } else if (choice == 2) {
                         // inventory
                         inventory.displayInventory();
@@ -225,12 +225,15 @@ public class Main {
                         display();
                     }
 
-                    if (character.getHealth() < 1) {
+                    if (Character.getHealth() < 1) {
                         System.out.println("You died.");
                     }
                 }
 
-                System.out.println("Congratulations on winning! You've won a chest containing: ");
+                System.out.println("Congratulations on winning!");
+                System.out.println("You've earned " + ((count/2) + 5) + " money!");
+                money.add((count/2) + 5);
+                System.out.println("You've won a chest containing: ");
                 Random random = new Random();
                 int num = random.nextInt(3) + 1;
 
@@ -240,10 +243,8 @@ public class Main {
                 } else if (num == 2) {
                     inventory.addArmor(armor.createArmor("boots", "good"));
                     System.out.println("1x Good Boots");
-                } else if (num == 3) {
-                    inventory.addArmor(armor.createArmor("shield", "good"));
                 } else {
-                    System.out.println("Error: Random variable not initialized properly! :(");
+                    inventory.addArmor(armor.createArmor("shield", "good"));
                 }
 
                 inventory.addPotion(items.createItem("health", "good"));
@@ -260,7 +261,7 @@ public class Main {
                     System.out.println("Leaving the cave now . . .");
                     return money.getMoney();
                 } else if (choice == 2) {
-                    break;
+                    // Continue fight
                 } else {
                     System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
                     return money.getMoney();
@@ -271,10 +272,10 @@ public class Main {
                 AttackDecorator enemyAttack = new AttackDecorator(skeleton.getAttack(), 0.25, 0.1);
                 AttackDecorator charAttack = new AttackDecorator(character.getAttack(), 0.25, 0.1);
 
-                System.out.println("You've encountered a skeleton! They are tougher than the goblins . . .");
                 display();
+                System.out.println("You've encountered a skeleton! They are tougher than the goblins . . .");
 
-                while (!skeleton.isDead() && character.getHealth() > 0) {
+                while (!skeleton.isDead() && Character.getHealth() > 0) {
                     choice = scanner.nextInt();
                     if (choice == 1) {
                         // attack
@@ -285,7 +286,7 @@ public class Main {
                         System.out.println("The skeleton's attack!");
                         int enemyDmg = enemyAttack.performAttack();
                         System.out.println("They did " + enemyDmg + " to you!");
-                        character.setHealth(-enemyDmg);
+                        Character.setHealth(-enemyDmg);
                     } else if (choice == 2) {
                         // inventory
                         inventory.displayInventory();
@@ -310,12 +311,15 @@ public class Main {
                         display();
                     }
 
-                    if (character.getHealth() < 1) {
+                    if (Character.getHealth() < 1) {
                         System.out.println("You died.");
                     }
                 }
 
-                System.out.println("Congratulations on winning! You've won a chest containing: ");
+                System.out.println("Congratulations on winning!");
+                System.out.println("You've earned " + ((count/2) + 5) + " money!");
+                money.add((count/2) + 5);
+                System.out.println("You've won a chest containing: ");
                 Random random = new Random();
                 int num = random.nextInt(3) + 1;
 
@@ -325,11 +329,9 @@ public class Main {
                 } else if (num == 2) {
                     inventory.addArmor(armor.createArmor("boots", "poor"));
                     System.out.println("1x Poor Boots");
-                } else if (num == 3) {
+                } else {
                     inventory.addArmor(armor.createArmor("shield", "poor"));
                     System.out.println("1x Poor Shield");
-                } else {
-                    System.out.println("Error: Random variable not initialized properly! :(");
                 }
 
                 inventory.addPotion(items.createItem("health", "poor"));
@@ -346,7 +348,7 @@ public class Main {
                     System.out.println("Leaving the cave now . . .");
                     return money.getMoney();
                 } else if (choice == 2) {
-                    break;
+                    // Continue fight
                 } else {
                     System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
                     return money.getMoney();
@@ -356,10 +358,10 @@ public class Main {
                 AttackDecorator enemyAttack = new AttackDecorator(goblin.getAttack(), 0.1, 0.25);
                 AttackDecorator charAttack = new AttackDecorator(character.getAttack(), 0.25, 0.1);
 
-                System.out.println("You've encountered a goblin! They are the simpliest monster here . . .");
                 display();
+                System.out.println("You've encountered a goblin! They are the simpliest monster here . . .");
 
-                while (!goblin.isDead() && character.getHealth() > 0) {
+                while (!goblin.isDead() && Character.getHealth() > 0) {
                     choice = scanner.nextInt();
                     if (choice == 1) {
                         // attack
@@ -370,7 +372,7 @@ public class Main {
                         System.out.println("The goblin's attack!");
                         int enemyDmg = enemyAttack.performAttack();
                         System.out.println("They did " + enemyDmg + " to you!");
-                        character.setHealth(-enemyDmg);
+                        Character.setHealth(-enemyDmg);
 
                     } else if (choice == 2) {
                         // inventory
@@ -396,32 +398,14 @@ public class Main {
                         display();
                     }
 
-                    if (character.getHealth() < 1) {
+                    if (Character.getHealth() < 1) {
                         System.out.println("You died.");
                     }
                 }
 
-                System.out.println("Congratulations on winning! You've won a chest containing: ");
-                Random random = new Random();
-                int num = random.nextInt(3) + 1;
+                System.out.println("Congratulations on winning! You've won " + (count/2) + " money!");
+                money.add(count / 2);
 
-                if (num == 1) {
-                    inventory.addArmor(armor.createArmor("helmet", "poor"));
-                    System.out.println("1x Poor Helmet");
-                } else if (num == 2) {
-                    inventory.addArmor(armor.createArmor("boots", "poor"));
-                    System.out.println("1x Poor Boots");
-                } else if (num == 3) {
-                    inventory.addArmor(armor.createArmor("shield", "poor"));
-                    System.out.println("1x Poor Shield");
-                } else {
-                    System.out.println("Error: Random variable not initialized properly! :(");
-                }
-
-                inventory.addPotion(items.createItem("health", "poor"));
-                System.out.println("1x Poor Health Potion");
-                inventory.addPotion(items.createItem("mana", "poor"));
-                System.out.println("1x Poor Mana Potion");
                 System.out.println("Your current earned money for this trip is: " + money.getMoney());
                 System.out.println("Your current total XP is: " + character.getXP());
                 System.out.println("Do you want to leave the cave?");
@@ -432,7 +416,7 @@ public class Main {
                     System.out.println("Leaving the cave now . . .");
                     return money.getMoney();
                 } else if (choice == 2) {
-                    break;
+                    // Continue fight
                 } else {
                     System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
                     return money.getMoney();
@@ -440,7 +424,6 @@ public class Main {
             }
             count++;
             Floor.setFloor(count);
-            money.add(count / 2);
         }
         System.out.println("Leaving the cave now . . .");
         return money.getMoney();

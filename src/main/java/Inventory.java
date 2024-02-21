@@ -52,6 +52,7 @@ public class Inventory {
         for (Item armor : armor) {
             System.out.println("- " + armor.getName() + " (" + armor.getCondition() + ")");
         }
+        System.out.println();
     }
 
     public void usePotion(int index) {
