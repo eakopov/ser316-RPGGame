@@ -1,6 +1,6 @@
 package skills;
 
-public class partSkill implements Strategy {
+public class PartSkill implements Strategy {
 
     @Override
     public void skill(String skill) {

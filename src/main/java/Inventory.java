@@ -33,8 +33,8 @@ public class Inventory {
         this.potions.add(potion);
     }
 
-    public ArrayList<Item> getArmor() {
-        return armor;
+    public int getArmor() {
+        return armor.size();
     }
 
     public void addArmor(Item armor) {
