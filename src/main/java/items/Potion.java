@@ -1,7 +1,6 @@
 package items;
 
 import characters.Character;
-
 import java.util.Random;
 
 public class Potion extends Item {

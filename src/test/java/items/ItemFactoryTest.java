@@ -11,48 +11,48 @@ public class ItemFactoryTest {
         Item helmet = factory.createItem("helmet", "new");
 
         assertTrue(helmet instanceof Armor);
-        assertEquals("helmet", helmet.getName());
+        assertEquals("Helmet", helmet.getName());
         assertEquals("new", helmet.getCondition());
     }
 
     @Test
     public void testCreateBoots() {
         ItemFactory factory = new ItemFactory();
-        Item boots = factory.createItem("boots", "worn");
+        Item boots = factory.createItem("boots", "good");
 
         assertTrue(boots instanceof Armor);
-        assertEquals("boots", boots.getName());
-        assertEquals("worn", boots.getCondition());
+        assertEquals("Boots", boots.getName());
+        assertEquals("good", boots.getCondition());
     }
 
     @Test
     public void testCreateShield() {
         ItemFactory factory = new ItemFactory();
-        Item shield = factory.createItem("shield", "damaged");
+        Item shield = factory.createItem("shield", "poor");
 
         assertTrue(shield instanceof Armor);
-        assertEquals("shield", shield.getName());
-        assertEquals("damaged", shield.getCondition());
+        assertEquals("Shield", shield.getName());
+        assertEquals("poor", shield.getCondition());
     }
 
     @Test
     public void testCreateHealthPotion() {
         ItemFactory factory = new ItemFactory();
-        Item healthPotion = factory.createItem("health", "new");
+        Item healthPotion = factory.createItem("health", "fair");
 
         assertTrue(healthPotion instanceof Potion);
         assertEquals("health", healthPotion.getName());
-        assertEquals("new", healthPotion.getCondition());
+        assertEquals("fair", healthPotion.getCondition());
     }
 
     @Test
     public void testCreateManaPotion() {
         ItemFactory factory = new ItemFactory();
-        Item manaPotion = factory.createItem("mana", "used");
+        Item manaPotion = factory.createItem("mana", "good");
 
         assertTrue(manaPotion instanceof Potion);
         assertEquals("mana", manaPotion.getName());
-        assertEquals("used", manaPotion.getCondition());
+        assertEquals("good", manaPotion.getCondition());
     }
 
     @Test(expected = IllegalArgumentException.class)
