@@ -13,10 +13,11 @@ public class Shop {
 
     public static void displayItems() {
         System.out.println("Items Available in the Shop:");
+        System.out.println("Each item is 4 money or all 3 for 10");
         System.out.println("1. Armor");
         System.out.println("2. Health Potion");
         System.out.println("3. Mana Potion");
-        System.out.println("4. Buy All Items for " + priceAll + " money");
+        System.out.println("4. Buy All Items" + priceAll + " money");
         System.out.println("5. Exit shop");
     }
 
@@ -27,7 +28,7 @@ public class Shop {
                 System.out.println("You bought " + armor.getName() + " for " + itemPrice + " money.");
                 inventory.addArmor(armor);
                 inventory.addMoney(-itemPrice);
-                Main.menu();
+                //Main.menu();
                 break;
             case 2:
                 System.out.println("You bought a Health Potion for " + itemPrice + " money.");
@@ -35,7 +36,7 @@ public class Shop {
                 Potion health = new Potion("health", condition);
                 inventory.addPotion(health);
                 inventory.addMoney(-itemPrice);
-                Main.menu();
+                //Main.menu();
                 break;
             case 3:
                 System.out.println("You bought a Mana Potion for " + itemPrice + " money.");
@@ -43,7 +44,7 @@ public class Shop {
                 Potion mana = new Potion("mana", condition1);
                 inventory.addPotion(mana);
                 inventory.addMoney(-itemPrice);
-                Main.menu();
+                //Main.menu();
                 break;
             case 4:
                 System.out.println("You bought all items for " + priceAll + " money.");
@@ -56,7 +57,7 @@ public class Shop {
                 inventory.addPotion(health1);
                 inventory.addPotion(mana1);
                 inventory.addMoney(-priceAll);
-                Main.menu();
+                //Main.menu();
                 break;
             default:
                 Main.menu();

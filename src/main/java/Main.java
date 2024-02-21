@@ -1,3 +1,12 @@
+/**
+ * Main class is responsible for initiating and controlling the Dungeon Crawler Game.
+ * <p>
+ * Total completion time: 30 hours
+ *
+ * @author Elizabeth Akopov
+ * @version 02.20.24
+ */
+
 import attack.Attack;
 import attack.AttackDecorator;
 import characters.Character;
@@ -10,7 +19,8 @@ import items.ItemFactory;
 import items.Money;
 
 import java.util.Random;
-import java.util.Scanner;
+// Commented out for fully automated version.
+//import java.util.Scanner;
 
 public class Main {
     static Character character;
@@ -20,10 +30,15 @@ public class Main {
     public static int totalMana;
 
     public static void main(String[] args) {
+        // Set floor number
         floor = Floor.getFloor();
+        // Set cycle part number
         Cycle.part = 1;
-        Scanner scanner = new Scanner(System.in);
+        // Commented out for fully automated version.
+        //Scanner scanner = new Scanner(System.in);
         EnemyFactory enemyFactory = new EnemyFactory();
+        CharacterFactory charMaker = new CharacterFactory();
+
         // Display title card and options
         System.out.println("Welcome to the Dungeon Crawler Game!");
         System.out.println("Options:");
@@ -32,14 +47,27 @@ public class Main {
 
         // Prompt user for choice
         System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
+        System.out.println("(Choice option 1 chosen)");
+        int choice = 1;
 
+        // Start game
         if (choice == 1) {
             // Start character creation
-            character = createCharacter(scanner);
+            System.out.println("Starting character creation . . .");
+            System.out.println("For this demo, you will be:");
+            System.out.println("Name   : Derrin");
+            System.out.println("Sex    : Male");
+            System.out.println("Height : Tall");
+            System.out.println("Weight : Average");
+            System.out.println("Class  : Druid");
+            System.out.println("Race   : Elf");
+            character = charMaker.createCharacter("Derrin", "male", "tall", "average", "druid", "elf");
+            // set inventory for new game
             inventory = new Inventory();
             totalHP = Character.getHealth();
+            System.out.println("LOOK AT ME HEALTH: " + totalHP);
             totalMana = Character.getMana();
+            System.out.println("LOOK AT ME MANA: " + totalMana);
 
             // Access specific properties of the character
             System.out.printf("\n%s Stats:\n", character.getName());
@@ -61,24 +89,19 @@ public class Main {
             System.out.println("You are unfortunately greeted by a nasty goblin, and you cannot escape this fight!");
             System.out.println("Let's test your wits and see what you've got, " + character.getName() + "!");
             while (!enemy.isDead()) {
-                System.out.println("1. Attack");
-                System.out.println("2. Inventory");
-                choice = scanner.nextInt();
+                Attack charAttack = new AttackDecorator(character.getAttack(), 0.05, 0.25); // Beginner's luck
+                int damage = charAttack.performAttack();
+                System.out.println(character.getName() + " does " + damage + " damage!");
+                enemy.setHealth(enemy.getHealth() - damage);
 
-                if (choice == 1) {
-                    Attack charAttack = new AttackDecorator(character.getAttack(), 0.05, 0.25); // Beginner's luck
-                    int damage = charAttack.performAttack();
-                    System.out.println(character.getName() + " does " + damage + " damage!");
-                    enemy.setHealth(enemy.getHealth() - damage);
-
-                    if (enemy.getHealth() > 0) {
-                        System.out.println("The " + enemy.getType() + " is not dead yet!");
-                        System.out.println("The " + enemy.getType() + " attempts to attack.");
-                        Character.setHealth(Character.getHealth() - enemyAttack.performAttack());
-                    }
-                } else if (choice == 2) {
-                    System.out.println("Inventory is empty.");
+                if (enemy.getHealth() > 0) {
+                    System.out.println("The " + enemy.getType() + " is not dead yet!");
+                    System.out.println("The " + enemy.getType() + " attempts to attack.");
+                    Character.setHealth(Character.getHealth() - enemyAttack.performAttack());
                 }
+//                } else if (choice == 2) {
+//                    System.out.println("Inventory is empty.");
+//                }
             }
 
             System.out.println("Congratulations on defeating the goblin! Welcome to the Dungeon Crawler game.");
@@ -92,44 +115,14 @@ public class Main {
         } else if (choice == 2) {
             // Exit the game
             System.out.println("Exiting the game. Goodbye!");
-            return;
         } else {
             System.out.println("Invalid choice. Please select 1 or 2.");
-            return;
         }
 
-        scanner.close();
     }
 
-    private static characters.Character createCharacter(Scanner scanner) {
-        // Prompt user for character attributes
-        System.out.println("\nCharacter Creation:");
-
-        System.out.print("Enter character name: ");
-        String name = scanner.next();
-
-        System.out.print("Enter sex (Male/Female): ");
-        String sex = scanner.next();
-
-        System.out.print("Enter height (Short/Average/Tall): ");
-        String height = scanner.next();
-
-        System.out.print("Enter weight (Slim/Average/Large): ");
-        String weight = scanner.next();
-
-        System.out.print("Enter character class (Druid/Bard/Cleric/Paladin/Wizard): ");
-        String characterClass = scanner.next();
-
-        System.out.print("Enter character race (Human/Elf/Dwarf/Orc/Tiefling): ");
-        String characterRace = scanner.next();
-
-        // Create character using CharacterFactory
-        CharacterFactory characterFactory = new CharacterFactory();
-        return characterFactory.createCharacter(name, sex, height, weight, characterClass, characterRace);
-    }
 
     public static void menu() {
-        Scanner scanner = new Scanner(System.in);
         int choice;
         System.out.println("What will you choose?");
         System.out.println("1. Go to the Shop");
@@ -137,30 +130,66 @@ public class Main {
         System.out.println("3. Check inventory");
         System.out.println("4. Leave and never return (exit)");
 
-        choice = scanner.nextInt();
+        // Going to the shop
+        System.out.println("(Choosing option 1)");
 
-        if (choice == 1) {
-            Shop.displayItems();
-            choice = scanner.nextInt();
-            Shop.buyItem(choice, inventory);
-            menu();
-        } else if (choice == 2) {
-            int money = cave();
-            inventory.addMoney(money);
-            Character.setHealth(totalHP);
-            Character.setMana(totalMana);
-            menu();
-        } else if (choice == 3) {
-            inventory.displayInventory();
-            menu();
-        } else {
-            System.exit(0);
-        }
+        // Shop choice 1
+        Shop.displayItems();
+        System.out.println("(Choosing 1: Armor)");
+        choice = 1;
+        Shop.buyItem(choice, inventory);
+        inventory.displayInventory();
+
+        // Shop choice 2
+        System.out.println("(Choosing 2: Health Potion)");
+        choice = 2;
+        Shop.buyItem(choice, inventory);
+        inventory.displayInventory();
+
+        // Shop choice 3
+        System.out.println("(Choosing 3: Mana Potion)");
+        choice = 3;
+        Shop.buyItem(choice, inventory);
+        inventory.displayInventory();
+
+        //Shop choice 4
+        System.out.println("(Choosing 4: Buy All)");
+        choice = 4;
+        Shop.buyItem(choice, inventory);
+        inventory.displayInventory();
+
+        // Shop choice 5 : exit shop
+        System.out.println("Exiting shop . . .");
+        System.out.println("What will you choose?");
+        System.out.println("1. Go to the Shop");
+        System.out.println("2. Go into the Cave");
+        System.out.println("3. Check inventory");
+        System.out.println("4. Leave and never return (exit)");
+
+        // Option 2
+        System.out.println("(Choosing option 2)");
+        int money = cave();
+        inventory.addMoney(money);
+        Character.setHealth(totalHP);
+        Character.setMana(totalMana);
+        System.out.println("Money amount earned from this cave trip was : " + money);
+        System.out.println("Health restored to: " + Character.getHealth());
+        System.out.println("Health restored to: " + Character.getMana());
+
+        // Option 3
+        System.out.println("(Choosing option 3)");
+        inventory.displayInventory();
+
+        // Option 4
+        System.out.println("(Choosing option 4)");
+        System.out.println("Exiting the game. Goodbye!");
+        System.exit(0);
     }
 
     public static int cave() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         ArmorFactory armor = new ArmorFactory();
+        EnemyFactory enemy = new EnemyFactory();
         ItemFactory items = new ItemFactory();
         int choice;
         Money money = new Money();
@@ -172,7 +201,7 @@ public class Main {
 
 
         while (Character.getHealth() > dying) {
-            EnemyFactory enemy = new EnemyFactory();
+            floor = Floor.getFloor();
             if (Floor.getFloor() % 3 == 0) {
                 int part = (Cycle.getPart() % 4) + 1;
                 Cycle.setPart(part);
@@ -180,59 +209,51 @@ public class Main {
             }
 
             if (Floor.getFloor() == 100) {
+                System.out.println();
                 //bossFight();
             } else if (Floor.getFloor() % 10 == 0) {
                 Enemy orc = enemy.createEnemy("orc");
                 AttackDecorator enemyAttack = new AttackDecorator(orc.getAttack(), 0.1, 0.25);
                 AttackDecorator charAttack = new AttackDecorator(character.getAttack(), 0.25, 0.1);
 
-                display();
                 System.out.println("You've encountered an orc! They are the most difficult of them all.");
+                display();
 
                 while (!orc.isDead() && Character.getHealth() > 0) {
-                    choice = scanner.nextInt();
-                    if (choice == 1) {
-                        // attack
-                        System.out.println("Your attack, " + character.getName() + "!");
-                        int dmg = charAttack.performAttack();
-                        orc.setHealth(-dmg);
-                        System.out.println("You did " + dmg + " to the orc.");
-                        System.out.println("The orc's attack!");
-                        int enemyDmg = enemyAttack.performAttack();
-                        System.out.println("They did " + enemyDmg + " to you!");
-                        Character.setHealth(-enemyDmg);
-                    } else if (choice == 2) {
-                        // inventory
-                        inventory.displayInventory();
-                        System.out.println("What would you like to do?");
-                        if (inventory.getPotions().isEmpty()) {
-                            System.out.println("Go back.");
-                            display();
-                        } else {
-                            System.out.println("1. Use Potion");
-                            System.out.println("2. Go back.");
-
-                            choice = scanner.nextInt();
-                            if (choice == 1) {
-                                System.out.println("Which one?");
-                                choice = scanner.nextInt();
-                                inventory.usePotion(choice);
-                            }
-                            display();
-                        }
-                    } else {
-                        System.out.println("Error: invalid choice! Please choose either 1 or 2.");
+                    System.out.println("(Choosing 1 : attack");
+                    System.out.println("Your attack, " + character.getName() + "!");
+                    int dmg = charAttack.performAttack();
+                    orc.setHealth(-dmg);
+                    System.out.println("You did " + dmg + " to the orc.");
+                    System.out.println("The orc's attack!");
+                    int enemyDmg = enemyAttack.performAttack();
+                    System.out.println("They did " + enemyDmg + " to you!");
+                    Character.setHealth(-enemyDmg);
+                    display();
+                    System.out.println("(Choosing 2 : inventory");
+                    // inventory
+                    inventory.displayInventory();
+                    System.out.println("What would you like to do?");
+                    if (inventory.getPotions().isEmpty()) {
+                        System.out.println("Go back.");
                         display();
-                    }
+                    } else {
+                        System.out.println("1. Use Potion");
+                        System.out.println("2. Go back.");
+                        System.out.println("(Choosing 1 : use potion)");
+                        System.out.println("Which one?");
+                        //choice = scanner.nextInt();
+                        System.out.println("(Choosing first potion in list . . .)");
+                        inventory.usePotion(0);
 
-                    if (Character.getHealth() < 1) {
-                        System.out.println("You died.");
+                        display();
                     }
                 }
 
+                floor++;
                 System.out.println("Congratulations on winning!");
-                System.out.println("You've earned " + ((count/2) + 5) + " money!");
-                money.add((count/2) + 5);
+                System.out.println("You've earned " + ((floor / 2) + 5) + " money!");
+                money.add((floor / 2) + 5);
                 System.out.println("You've won a chest containing: ");
                 Random random = new Random();
                 int num = random.nextInt(3) + 1;
@@ -256,16 +277,8 @@ public class Main {
                 System.out.println("Do you want to leave the cave?");
                 System.out.println("1. Yes, leave.");
                 System.out.println("2. No, continue.");
-                choice = scanner.nextInt();
-                if (choice == 1) {
-                    System.out.println("Leaving the cave now . . .");
-                    return money.getMoney();
-                } else if (choice == 2) {
-                    // Continue fight
-                } else {
-                    System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
-                    return money.getMoney();
-                }
+
+
                 // option to exit cave
             } else if (Floor.getFloor() % 5 == 0) {
                 Enemy skeleton = enemy.createEnemy("skeleton");
@@ -276,49 +289,40 @@ public class Main {
                 System.out.println("You've encountered a skeleton! They are tougher than the goblins . . .");
 
                 while (!skeleton.isDead() && Character.getHealth() > 0) {
-                    choice = scanner.nextInt();
-                    if (choice == 1) {
-                        // attack
-                        System.out.println("Your attack, " + character.getName() + "!");
-                        int dmg = charAttack.performAttack();
-                        skeleton.setHealth(-dmg);
-                        System.out.println("You did " + dmg + " to the skeleton.");
-                        System.out.println("The skeleton's attack!");
-                        int enemyDmg = enemyAttack.performAttack();
-                        System.out.println("They did " + enemyDmg + " to you!");
-                        Character.setHealth(-enemyDmg);
-                    } else if (choice == 2) {
-                        // inventory
-                        inventory.displayInventory();
-                        System.out.println("What would you like to do?");
-                        if (inventory.getPotions().isEmpty()) {
-                            System.out.println("Go back.");
-                            display();
-                        } else {
-                            System.out.println("1. Use Potion");
-                            System.out.println("2. Go back.");
-
-                            choice = scanner.nextInt();
-                            if (choice == 1) {
-                                System.out.println("Which one?");
-                                choice = scanner.nextInt();
-                                inventory.usePotion(choice);
-                            }
-                            display();
-                        }
-                    } else {
-                        System.out.println("Error: invalid choice! Please choose either 1 or 2.");
+                    System.out.println("(Choosing 1 : attack");
+                    System.out.println("Your attack, " + character.getName() + "!");
+                    int dmg = charAttack.performAttack();
+                    skeleton.setHealth(-dmg);
+                    System.out.println("You did " + dmg + " to the orc.");
+                    System.out.println("The orc's attack!");
+                    int enemyDmg = enemyAttack.performAttack();
+                    System.out.println("They did " + enemyDmg + " to you!");
+                    Character.setHealth(-enemyDmg);
+                    display();
+                    System.out.println("(Choosing 2 : inventory");
+                    // inventory
+                    inventory.displayInventory();
+                    System.out.println("What would you like to do?");
+                    if (inventory.getPotions().isEmpty()) {
+                        System.out.println("Go back.");
                         display();
-                    }
+                    } else {
+                        System.out.println("1. Use Potion");
+                        System.out.println("2. Go back.");
+                        System.out.println("(Choosing 1 : use potion)");
+                        System.out.println("Which one?");
+                        //choice = scanner.nextInt();
+                        System.out.println("(Choosing first potion in list . . .)");
+                        inventory.usePotion(0);
 
-                    if (Character.getHealth() < 1) {
-                        System.out.println("You died.");
+                        display();
                     }
                 }
 
+                floor++;
                 System.out.println("Congratulations on winning!");
-                System.out.println("You've earned " + ((count/2) + 5) + " money!");
-                money.add((count/2) + 5);
+                System.out.println("You've earned " + ((count / 2) + 5) + " money!");
+                money.add((count / 2) + 5);
                 System.out.println("You've won a chest containing: ");
                 Random random = new Random();
                 int num = random.nextInt(3) + 1;
@@ -343,16 +347,6 @@ public class Main {
                 System.out.println("Do you want to leave the cave?");
                 System.out.println("1. Yes, leave.");
                 System.out.println("2. No, continue.");
-                choice = scanner.nextInt();
-                if (choice == 1) {
-                    System.out.println("Leaving the cave now . . .");
-                    return money.getMoney();
-                } else if (choice == 2) {
-                    // Continue fight
-                } else {
-                    System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
-                    return money.getMoney();
-                }
             } else {
                 Enemy goblin = enemy.createEnemy("goblin");
                 AttackDecorator enemyAttack = new AttackDecorator(goblin.getAttack(), 0.1, 0.25);
@@ -362,65 +356,41 @@ public class Main {
                 System.out.println("You've encountered a goblin! They are the simpliest monster here . . .");
 
                 while (!goblin.isDead() && Character.getHealth() > 0) {
-                    choice = scanner.nextInt();
-                    if (choice == 1) {
-                        // attack
-                        System.out.println("Your attack, " + character.getName() + "!");
-                        int dmg = charAttack.performAttack();
-                        goblin.setHealth(-dmg);
-                        System.out.println("You did " + dmg + " to the goblin.");
-                        System.out.println("The goblin's attack!");
-                        int enemyDmg = enemyAttack.performAttack();
-                        System.out.println("They did " + enemyDmg + " to you!");
-                        Character.setHealth(-enemyDmg);
-
-                    } else if (choice == 2) {
-                        // inventory
-                        inventory.displayInventory();
-                        System.out.println("What would you like to do?");
-                        if (inventory.getPotions().isEmpty()) {
-                            System.out.println("Go back.");
-                            display();
-                        } else {
-                            System.out.println("1. Use Potion");
-                            System.out.println("2. Go back.");
-
-                            choice = scanner.nextInt();
-                            if (choice == 1) {
-                                System.out.println("Which one?");
-                                choice = scanner.nextInt();
-                                inventory.usePotion(choice);
-                            }
-                            display();
-                        }
+                    System.out.println("(Choosing 1 : attack");
+                    System.out.println("Your attack, " + character.getName() + "!");
+                    int dmg = charAttack.performAttack();
+                    goblin.setHealth(-dmg);
+                    System.out.println("You did " + dmg + " to the orc.");
+                    System.out.println("The orc's attack!");
+                    int enemyDmg = enemyAttack.performAttack();
+                    System.out.println("They did " + enemyDmg + " to you!");
+                    Character.setHealth(-enemyDmg);
+                    display();
+                    System.out.println("(Choosing 2 : inventory");
+                    // inventory
+                    inventory.displayInventory();
+                    System.out.println("What would you like to do?");
+                    if (inventory.getPotions().isEmpty()) {
+                        System.out.println("Go back.");
+                        display();
                     } else {
-                        System.out.println("Error: invalid choice! Please choose either 1 or 2.");
+                        System.out.println("1. Use Potion");
+                        System.out.println("2. Go back.");
+                        System.out.println("(Choosing 1 : use potion)");
+                        System.out.println("Which one?");
+                        //choice = scanner.nextInt();
+                        System.out.println("(Choosing first potion in list . . .)");
+                        inventory.usePotion(0);
+
                         display();
                     }
-
-                    if (Character.getHealth() < 1) {
-                        System.out.println("You died.");
-                    }
                 }
-
-                System.out.println("Congratulations on winning! You've won " + (count/2) + " money!");
+                floor++;
+                System.out.println("Congratulations on winning! You've won " + (count / 2) + " money!");
                 money.add(count / 2);
 
                 System.out.println("Your current earned money for this trip is: " + money.getMoney());
                 System.out.println("Your current total XP is: " + character.getXP());
-                System.out.println("Do you want to leave the cave?");
-                System.out.println("1. Yes, leave.");
-                System.out.println("2. No, continue.");
-                choice = scanner.nextInt();
-                if (choice == 1) {
-                    System.out.println("Leaving the cave now . . .");
-                    return money.getMoney();
-                } else if (choice == 2) {
-                    // Continue fight
-                } else {
-                    System.out.println("Error: That is neither 1 nor 2. You are leaving the cave now.");
-                    return money.getMoney();
-                }
             }
             count++;
             Floor.setFloor(count);
@@ -431,7 +401,7 @@ public class Main {
 
     public static void display() {
         System.out.println("---------------------");
-        System.out.println("| FLOOR NUMBER: " + Floor.getFloor() + "   |");
+        System.out.println("| FLOOR NUMBER: " + floor + "   |");
         System.out.println("---------------------");
         System.out.println("Effect Status: " + Cycle.cycleEffect(Cycle.getPart()));
         System.out.println("Your health: " + Character.getHealth());
