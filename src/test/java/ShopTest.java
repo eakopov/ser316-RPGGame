@@ -36,7 +36,8 @@ public class ShopTest {
                 "4. Buy All Items10 money\r\n" +
                 "5. Exit shop\r\n";
 
-        assertEquals(expectedOutput, outputStream.toString());
+        String output = outputStream.toString();
+        assertEquals(expectedOutput, output);
     }
 
     @Test

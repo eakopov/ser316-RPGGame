@@ -89,6 +89,7 @@ public class InventoryTest {
 
         String expectedOutput = "Inventory:\r\nMoney: 100\r\nPotions:\r\n- Health (Good)\r\n- Mana (Fair)\r\nArmor:\r\n- Helmet (Fair)\r\n- Boots (Good)\r\n\r\n";
 
-        assertEquals(expectedOutput, outputStream.toString());
+        String output = outputStream.toString();
+        assertEquals(expectedOutput, output);
     }
 }
