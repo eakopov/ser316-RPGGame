@@ -1,11 +1,12 @@
 package items;
 
 import characters.Character;
+
 import java.util.Random;
 
 public class Potion extends Item {
-    private String condition;
-    private String name;
+    private final String condition;
+    private final String name;
 
     private int amount;
 
@@ -45,11 +46,11 @@ public class Potion extends Item {
                 throw new IllegalArgumentException("Invalid item condition: " + condition);
         }
 
-        if(name.toLowerCase().equals("health")) {
+        if (name.equalsIgnoreCase("health")) {
             Character.setHealth(Character.getHealth() + amount);
             System.out.println("Your health is now: " + Character.getHealth());
         }
-        if(name.toLowerCase().equals("mana")){
+        if (name.equalsIgnoreCase("mana")) {
             Character.setMana(Character.getMana() + amount);
             System.out.println("Your mana is now: " + Character.getMana());
         }

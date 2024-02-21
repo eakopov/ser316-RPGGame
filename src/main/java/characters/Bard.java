@@ -1,7 +1,7 @@
 package characters;
 
 public class Bard extends Character {
-    public Bard(String name, String sex,  String height, String weight, String race) {
+    public Bard(String name, String sex, String height, String weight, String race) {
         super(name, sex, height, weight, "Bard", race);
     }
 
@@ -9,7 +9,7 @@ public class Bard extends Character {
     @Override
     public void initializeStats() {
         this.attack = 5;
-        this.mana = 15;
+        mana = 15;
         this.defense = 7;
 
         // Create character based on race

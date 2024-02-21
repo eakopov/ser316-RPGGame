@@ -1,11 +1,12 @@
 import enemies.Floor;
-import items.*;
-import items.Armor;
-import java.util.ArrayList;
+import items.Item;
+import items.ItemFactory;
+import items.Potion;
+
 import java.util.Random;
 
 public class Shop {
-    private static int itemPrice = 4;
+    private static final int itemPrice = 4;
     private static final int priceAll = 10;
 
     protected static ItemFactory item = new ItemFactory();
@@ -26,6 +27,7 @@ public class Shop {
                 System.out.println("You bought " + armor.getName() + " for " + itemPrice + " money.");
                 inventory.addArmor(armor);
                 inventory.addMoney(-itemPrice);
+                Main.menu();
                 break;
             case 2:
                 System.out.println("You bought a Health Potion for " + itemPrice + " money.");
@@ -33,6 +35,7 @@ public class Shop {
                 Potion health = new Potion("health", condition);
                 inventory.addPotion(health);
                 inventory.addMoney(-itemPrice);
+                Main.menu();
                 break;
             case 3:
                 System.out.println("You bought a Mana Potion for " + itemPrice + " money.");
@@ -40,6 +43,7 @@ public class Shop {
                 Potion mana = new Potion("mana", condition1);
                 inventory.addPotion(mana);
                 inventory.addMoney(-itemPrice);
+                Main.menu();
                 break;
             case 4:
                 System.out.println("You bought all items for " + priceAll + " money.");
@@ -52,6 +56,7 @@ public class Shop {
                 inventory.addPotion(health1);
                 inventory.addPotion(mana1);
                 inventory.addMoney(-priceAll);
+                Main.menu();
                 break;
             default:
                 Main.menu();

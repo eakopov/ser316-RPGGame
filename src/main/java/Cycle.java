@@ -12,16 +12,16 @@ public class Cycle {
     public static String cycleEffect(int part) {
         String effect = "";
 
-        if(part == 1) {
+        if (part == 1) {
             effect = "Gain 2x money!";
         }
-        if(part == 2) {
+        if (part == 2) {
             effect = "HP decreased by 2!";
         }
-        if(part == 3) {
+        if (part == 3) {
             effect = "Extra enemies!";
         }
-        if(part == 4){
+        if (part == 4) {
             effect = "Attack increased by 2!";
         }
         return effect;

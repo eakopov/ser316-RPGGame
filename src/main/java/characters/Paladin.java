@@ -1,7 +1,7 @@
 package characters;
 
 public class Paladin extends Character {
-    public Paladin(String name, String sex,  String height, String weight, String race) {
+    public Paladin(String name, String sex, String height, String weight, String race) {
         super(name, sex, height, weight, "Paladin", race);
     }
 
@@ -9,7 +9,7 @@ public class Paladin extends Character {
     @Override
     public void initializeStats() {
         this.attack = 14;
-        this.mana = 2;
+        mana = 2;
         this.defense = 14;
 
 

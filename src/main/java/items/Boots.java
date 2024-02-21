@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Boots extends Armor {
     protected String condition;
-    private String name = "Boots";
+    private final String name = "Boots";
 
     public Boots(String condition) {
         super("Boots");

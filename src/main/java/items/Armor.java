@@ -1,7 +1,5 @@
 package items;
 
-import java.util.Random;
-
 public abstract class Armor extends Item {
 
     public Armor(String name) {
@@ -10,5 +8,6 @@ public abstract class Armor extends Item {
     }
 
     public abstract String getCondition();
+
     public abstract String getName();
 }

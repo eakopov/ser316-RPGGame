@@ -1,9 +1,9 @@
 package enemies;
 
 public class EnemyDecorator extends Enemy {
-    private Enemy decoratedEnemy;
-    private int healthModifier;
-    private int attackModifier;
+    private final Enemy decoratedEnemy;
+    private final int healthModifier;
+    private final int attackModifier;
 
     public EnemyDecorator(Enemy decoratedEnemy, int healthModifier, int attackModifier) {
         super(decoratedEnemy.getType(), decoratedEnemy.getHealth(), decoratedEnemy.getAttack(), decoratedEnemy.getLevel());

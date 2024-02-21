@@ -1,13 +1,15 @@
-import items.*;
+import items.Item;
+import items.ItemFactory;
 import items.Money;
+
 import java.util.ArrayList;
 
 public class Inventory {
-    private ItemFactory items = new ItemFactory();
+    private final ItemFactory items = new ItemFactory();
 
-    private Money money = new Money();
-    private ArrayList<Item> potions;
-    private ArrayList<Item> armor;
+    private final Money money = new Money();
+    private final ArrayList<Item> potions;
+    private final ArrayList<Item> armor;
 
     public Inventory() {
         money.setMoney(0);
@@ -41,7 +43,7 @@ public class Inventory {
 
     public void displayInventory() {
         System.out.println("Inventory:");
-        System.out.println("Money: " + money);
+        System.out.println("Money: " + money.getMoney());
         System.out.println("Potions:");
         for (Item potion : potions) {
             System.out.println("- " + potion.getName() + " (" + potion.getCondition() + ")");

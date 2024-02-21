@@ -9,7 +9,7 @@ public class Money {
     }
 
     public void use(int amount) {
-        if(amount > money){
+        if (amount > money) {
             System.out.println("You don't have enough money!");
             return;
         }

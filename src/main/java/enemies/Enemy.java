@@ -48,8 +48,8 @@ public class Enemy {
         this.level = level;
     }
 
-    public boolean isDead(){
-        if(health < 1){
+    public boolean isDead() {
+        if (health < 1) {
             status = true;
         }
         return status;

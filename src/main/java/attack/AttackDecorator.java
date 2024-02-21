@@ -3,10 +3,10 @@ package attack;
 import java.util.Random;
 
 public class AttackDecorator implements Attack {
-    private int attack;
-    private Random random;
-    private double missChance;
-    private double critChance;
+    private final int attack;
+    private final Random random;
+    private final double missChance;
+    private final double critChance;
 
     public AttackDecorator(int attack, double missChance, double critChance) {
         this.attack = attack;
