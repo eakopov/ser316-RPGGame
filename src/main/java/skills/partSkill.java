@@ -3,8 +3,8 @@ package skills;
 public class partSkill implements Strategy {
 
     @Override
-    public void skill(String skill){
-        switch(skill) {
+    public void skill(String skill) {
+        switch (skill) {
             case "Gain 2x money!":
 
                 break;

@@ -4,7 +4,7 @@ public class charSkill implements Strategy {
 
     @Override
     public void skill(String skill) {
-        switch(skill) {
+        switch (skill) {
             case "Gains 2x money each fight won.":
 
                 break;

@@ -115,10 +115,8 @@ public class Main {
         } else if (choice == 2) {
             // Exit the game
             System.out.println("Exiting the game. Goodbye!");
-            return;
         } else {
             System.out.println("Invalid choice. Please select 1 or 2.");
-            return;
         }
 
     }
@@ -252,7 +250,7 @@ public class Main {
                     }
                 }
 
-
+                floor++;
                 System.out.println("Congratulations on winning!");
                 System.out.println("You've earned " + ((floor / 2) + 5) + " money!");
                 money.add((floor / 2) + 5);
@@ -318,9 +316,10 @@ public class Main {
                         inventory.usePotion(0);
 
                         display();
-                        }
                     }
+                }
 
+                floor++;
                 System.out.println("Congratulations on winning!");
                 System.out.println("You've earned " + ((count / 2) + 5) + " money!");
                 money.add((count / 2) + 5);
@@ -386,7 +385,7 @@ public class Main {
                         display();
                     }
                 }
-
+                floor++;
                 System.out.println("Congratulations on winning! You've won " + (count / 2) + " money!");
                 money.add(count / 2);
 
