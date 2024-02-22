@@ -5,12 +5,23 @@ import items.Potion;
 
 import java.util.Random;
 
+/**
+ * The Shop class represents a shop where players can buy items such as armor
+ * and potions using money. It provides methods to display available items,
+ * handle item purchases, and generate random item conditions.
+ *
+ * @author Elizabeth Akopov
+ * @version 02.20.24
+ */
 public class Shop {
     private static final int itemPrice = 4;
     private static final int priceAll = 10;
 
     protected static ItemFactory item = new ItemFactory();
 
+    /**
+     * Displays the available items in the shop along with their prices.
+     */
     public static void displayItems() {
         System.out.println("Items Available in the Shop:");
         System.out.println("Each item is 4 money or all 3 for 10");
@@ -21,6 +32,12 @@ public class Shop {
         System.out.println("5. Exit shop");
     }
 
+    /**
+     * Processes the purchase of an item based on the player's choice.
+     *
+     * @param choice    The player's choice of item to buy.
+     * @param inventory The player's inventory to add the purchased item.
+     */
     public static void buyItem(int choice, Inventory inventory) {
         switch (choice) {
             case 1:
@@ -28,7 +45,6 @@ public class Shop {
                 System.out.println("You bought " + armor.getName() + " for " + itemPrice + " money.");
                 inventory.addArmor(armor);
                 inventory.addMoney(-itemPrice);
-                //Main.menu();
                 break;
             case 2:
                 System.out.println("You bought a Health Potion for " + itemPrice + " money.");
@@ -36,7 +52,6 @@ public class Shop {
                 Potion health = new Potion("health", condition);
                 inventory.addPotion(health);
                 inventory.addMoney(-itemPrice);
-                //Main.menu();
                 break;
             case 3:
                 System.out.println("You bought a Mana Potion for " + itemPrice + " money.");
@@ -44,7 +59,6 @@ public class Shop {
                 Potion mana = new Potion("mana", condition1);
                 inventory.addPotion(mana);
                 inventory.addMoney(-itemPrice);
-                //Main.menu();
                 break;
             case 4:
                 System.out.println("You bought all items for " + priceAll + " money.");
@@ -57,13 +71,17 @@ public class Shop {
                 inventory.addPotion(health1);
                 inventory.addPotion(mana1);
                 inventory.addMoney(-priceAll);
-                //Main.menu();
                 break;
             default:
                 Main.menu();
         }
     }
 
+    /**
+     * Returns a randomly selected armor type (helmet, boots, or shield).
+     *
+     * @return A randomly selected armor type.
+     */
     private static String returnArmor() {
         Random random = new Random();
         int randomNumber = random.nextInt(3) + 1;
@@ -81,6 +99,11 @@ public class Shop {
         }
     }
 
+    /**
+     * Generates a condition (poor, fair, or good) based on the current floor level.
+     *
+     * @return The generated condition.
+     */
     private static String generateCondition() {
         if (Floor.getFloor() < 10) {
             return "poor";

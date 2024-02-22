@@ -1,12 +1,3 @@
-/**
- * Main class is responsible for initiating and controlling the Dungeon Crawler Game.
- * <p>
- * Total completion time: 30 hours
- *
- * @author Elizabeth Akopov
- * @version 02.20.24
- */
-
 import attack.Attack;
 import attack.AttackDecorator;
 import characters.Character;
@@ -20,6 +11,13 @@ import items.Money;
 
 import java.util.Random;
 
+/**
+ * Main class is responsible for initiating and controlling the Dungeon Crawler Game.
+ * Total completion time: 40 hours
+ *
+ * @author Elizabeth Akopov
+ * @version 02.21.24
+ */
 public class Main {
     public static int floor;
     public static int totalHP;

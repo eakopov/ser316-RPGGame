@@ -11,6 +11,7 @@ package characters;
 
 public abstract class Character {
 
+    // Health and mana stats for all characters
     protected static int health;
     protected static int mana;
     // Name: Character's name
@@ -25,14 +26,23 @@ public abstract class Character {
     protected String characterClass;
     // Race: Human/Elf/Orc/Dwarf/Tiefling
     protected String characterRace;
-    // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed/Skill
+    // Stats (based on class/race): Attack/Defense/XP/Speed/Skill
     protected int attack;
     protected int defense;
     protected int xp;
     protected int speed;
     protected String skill;
 
-    // Constructor
+    /**
+     * Constructor for creating a character with specified attributes.
+     *
+     * @param name           The name of the character.
+     * @param sex            The gender of the character.
+     * @param height         The height of the character.
+     * @param weight         The weight of the character.
+     * @param characterClass The class of the character.
+     * @param characterRace  The race of the character.
+     */
     protected Character(String name, String sex,
                         String height, String weight, String characterClass, String characterRace) {
         this.name = name;
@@ -47,32 +57,21 @@ public abstract class Character {
         initializeStats();
     }
 
-    public static int getMana() {
-        return mana;
-    }
-
-    public static void setMana(int mana) {
-        Character.mana = mana;
-    }
-
-    /*
-        Getters and setters for all Character stats
-     */
-
-    public static int getHealth() {
-        return health;
-    }
-
-    public static void setHealth(int health) {
-        Character.health = health;
-    }
-
     // Abstract method to initialize stats based on character class
     public abstract void initializeStats();
 
-    // Method to calculate initial health based on height, weight, and sex
+    /**
+     * Calculates the initial health of the character based on their height, weight, and sex.
+     * <p>
+     * The initial health is determined by adding a base value determined by the character's height
+     * and adjusting it based on their weight and sex. Short characters have a base health of 5, average
+     * characters have a base health of 7, and tall characters have a base health of 9. Slim characters
+     * have their health reduced by 2, while large characters have their health increased by 2. Male
+     * characters have their health increased by 1, while female characters have their health decreased by 1.
+     *
+     * @return The calculated initial health value for the character.
+     */
     protected int calculateInitialHealth() {
-        // Implementation logic to calculate initial health
         int HP = 0;
 
         // Height
@@ -106,6 +105,26 @@ public abstract class Character {
         }
 
         return HP;
+    }
+
+    /*
+        Getters and setters for all Character stats
+     */
+
+    public static int getMana() {
+        return mana;
+    }
+
+    public static void setMana(int mana) {
+        Character.mana = mana;
+    }
+
+    public static int getHealth() {
+        return health;
+    }
+
+    public static void setHealth(int health) {
+        Character.health = health;
     }
 
     public String getName() {
