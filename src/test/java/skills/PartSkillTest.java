@@ -1,7 +1,8 @@
 package skills;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class PartSkillTest {
 

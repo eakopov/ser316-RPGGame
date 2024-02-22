@@ -11,28 +11,22 @@ package characters;
 
 public abstract class Character {
 
-    // Name: Character's name
-    protected String name;
-
-    // Sex: Male/Female
-    protected String sex;
-
-    // Height: Short/Average/Tall
-    protected String height;
-
-    // Weight/Build: Slim/Average/Large
-    protected String weight;
-
-    // Class: Wizard/Paladin/Bard/Druid/Cleric
-    protected String characterClass;
-
-    // Race: Human/Elf/Orc/Dwarf/Tiefling
-    protected String characterRace;
-
-    // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed/Skill
-    protected int attack;
     protected static int health;
     protected static int mana;
+    // Name: Character's name
+    protected String name;
+    // Sex: Male/Female
+    protected String sex;
+    // Height: Short/Average/Tall
+    protected String height;
+    // Weight/Build: Slim/Average/Large
+    protected String weight;
+    // Class: Wizard/Paladin/Bard/Druid/Cleric
+    protected String characterClass;
+    // Race: Human/Elf/Orc/Dwarf/Tiefling
+    protected String characterRace;
+    // Stats (based on class/race): Attack/Health/Mana/Defense/XP/Speed/Skill
+    protected int attack;
     protected int defense;
     protected int xp;
     protected int speed;
@@ -51,6 +45,26 @@ public abstract class Character {
         health = calculateInitialHealth();
         // Calculate initial stats based on class and race
         initializeStats();
+    }
+
+    public static int getMana() {
+        return mana;
+    }
+
+    public static void setMana(int mana) {
+        Character.mana = mana;
+    }
+
+    /*
+        Getters and setters for all Character stats
+     */
+
+    public static int getHealth() {
+        return health;
+    }
+
+    public static void setHealth(int health) {
+        Character.health = health;
     }
 
     // Abstract method to initialize stats based on character class
@@ -93,10 +107,6 @@ public abstract class Character {
 
         return HP;
     }
-
-    /*
-        Getters and setters for all Character stats
-     */
 
     public String getName() {
         return name;
@@ -154,14 +164,6 @@ public abstract class Character {
         this.attack = attack;
     }
 
-    public static int getMana() {
-        return mana;
-    }
-
-    public static void setMana(int mana) {
-        Character.mana = mana;
-    }
-
     public int getDefense() {
         return defense;
     }
@@ -176,14 +178,6 @@ public abstract class Character {
 
     public void setSpeed(int speed) {
         this.speed = speed;
-    }
-
-    public static int getHealth() {
-        return health;
-    }
-
-    public static void setHealth(int health) {
-        Character.health = health;
     }
 
     public int getXP() {

@@ -1,7 +1,8 @@
 package skills;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class CharSkillTest {
 
@@ -9,35 +10,35 @@ public class CharSkillTest {
     public void testSkillGains2xMoney() {
         CharSkill charSkill = new CharSkill();
         charSkill.skill("Gains 2x money each fight won.");
-        assertTrue(true); 
+        assertTrue(true);
     }
 
     @Test
     public void testSkillRecovers2HP() {
         CharSkill charSkill = new CharSkill();
         charSkill.skill("Recovers 2HP after every 5 floors.");
-        assertTrue(true); 
+        assertTrue(true);
     }
 
     @Test
     public void testSkillStartingHP() {
         CharSkill charSkill = new CharSkill();
         charSkill.skill("+5 starting HP");
-        assertTrue(true); 
+        assertTrue(true);
     }
 
     @Test
     public void testSkillStartingDefense() {
         CharSkill charSkill = new CharSkill();
         charSkill.skill("+5 starting defense");
-        assertTrue(true); 
+        assertTrue(true);
     }
 
     @Test
     public void testSkillStartingMana() {
         CharSkill charSkill = new CharSkill();
         charSkill.skill("+5 starting mana.");
-        assertTrue(true); 
+        assertTrue(true);
     }
 
     @Test(expected = IllegalArgumentException.class)

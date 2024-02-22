@@ -3,8 +3,8 @@ package items;
 import java.util.Random;
 
 public class Boots extends Armor {
-    protected String condition;
     private final String name = "Boots";
+    protected String condition;
 
     public Boots(String condition) {
         super("Boots");

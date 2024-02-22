@@ -1,7 +1,8 @@
 package characters;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class WizardTest {
 
@@ -10,7 +11,7 @@ public class WizardTest {
         Wizard wizard = new Wizard("Gandalf", "male", "tall", "average", "dwarf");
         wizard.initializeStats();
         assertEquals(10, wizard.getAttack());
-        assertEquals(15, wizard.getMana());
+        assertEquals(15, Character.getMana());
         assertEquals(5, wizard.getDefense());
         assertEquals(4, wizard.getSpeed());
         assertEquals("Gains 2x money each fight won.", wizard.getSkill());
@@ -21,7 +22,7 @@ public class WizardTest {
         Wizard wizard = new Wizard("Luna", "female", "tall", "average", "elf");
         wizard.initializeStats();
         assertEquals(10, wizard.getAttack());
-        assertEquals(15, wizard.getMana());
+        assertEquals(15, Character.getMana());
         assertEquals(5, wizard.getDefense());
         assertEquals(10, wizard.getSpeed());
         assertEquals("Recovers 2HP after every 5 floors.", wizard.getSkill());
@@ -32,7 +33,7 @@ public class WizardTest {
         Wizard wizard = new Wizard("Merlin", "male", "tall", "average", "human");
         wizard.initializeStats();
         assertEquals(10, wizard.getAttack());
-        assertEquals(15, wizard.getMana());
+        assertEquals(15, Character.getMana());
         assertEquals(5, wizard.getDefense());
         assertEquals(7, wizard.getSpeed());
         assertEquals("+5 starting HP", wizard.getSkill());
@@ -43,7 +44,7 @@ public class WizardTest {
         Wizard wizard = new Wizard("Gork", "male", "tall", "average", "orc");
         wizard.initializeStats();
         assertEquals(10, wizard.getAttack());
-        assertEquals(15, wizard.getMana());
+        assertEquals(15, Character.getMana());
         assertEquals(5, wizard.getDefense());
         assertEquals(5, wizard.getSpeed());
         assertEquals("+5 starting defense", wizard.getSkill());
@@ -54,7 +55,7 @@ public class WizardTest {
         Wizard wizard = new Wizard("Azazel", "male", "tall", "average", "tiefling");
         wizard.initializeStats();
         assertEquals(10, wizard.getAttack());
-        assertEquals(15, wizard.getMana());
+        assertEquals(15, Character.getMana());
         assertEquals(5, wizard.getDefense());
         assertEquals(9, wizard.getSpeed());
         assertEquals("+5 starting mana.", wizard.getSkill());

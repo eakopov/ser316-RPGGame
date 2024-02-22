@@ -1,7 +1,8 @@
 package characters;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class CharacterTest {
 
@@ -28,7 +29,7 @@ public class CharacterTest {
         Character character = new Druid("Test", "female", "short", "average", "dwarf");
         character.initializeStats();
         assertEquals(8, character.getAttack());
-        assertEquals(12, character.getMana());
+        assertEquals(12, Character.getMana());
         assertEquals(7, character.getDefense());
         assertEquals(4, character.getSpeed());
         assertEquals("Gains 2x money each fight won.", character.getSkill());

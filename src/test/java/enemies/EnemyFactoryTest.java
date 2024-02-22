@@ -1,7 +1,9 @@
 package enemies;
 
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class EnemyFactoryTest {
 

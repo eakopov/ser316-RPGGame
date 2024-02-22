@@ -19,24 +19,22 @@ import items.ItemFactory;
 import items.Money;
 
 import java.util.Random;
-// Commented out for fully automated version.
-//import java.util.Scanner;
 
 public class Main {
-    static Character character;
-    static Inventory inventory;
     public static int floor;
     public static int totalHP;
     public static int totalMana;
+    static Character character;
+    static Inventory inventory;
 
     public static void main(String[] args) {
         // Set floor number
         floor = Floor.getFloor();
         // Set cycle part number
         Cycle.part = 1;
-        // Commented out for fully automated version.
-        //Scanner scanner = new Scanner(System.in);
+        // New Enemy Factory (Enemy Maker)
         EnemyFactory enemyFactory = new EnemyFactory();
+        // New Character Factory (Character Maker)
         CharacterFactory charMaker = new CharacterFactory();
 
         // Display title card and options
@@ -62,12 +60,15 @@ public class Main {
             System.out.println("Class  : Druid");
             System.out.println("Race   : Elf");
             character = charMaker.createCharacter("Derrin", "male", "tall", "average", "druid", "elf");
-            // set inventory for new game
+
+            // Set inventory for new game
             inventory = new Inventory();
+
+            // Set Max HP for character
             totalHP = Character.getHealth();
-            System.out.println("LOOK AT ME HEALTH: " + totalHP);
+
+            // Set Max Mana for character
             totalMana = Character.getMana();
-            System.out.println("LOOK AT ME MANA: " + totalMana);
 
             // Access specific properties of the character
             System.out.printf("\n%s Stats:\n", character.getName());
@@ -84,10 +85,14 @@ public class Main {
             System.out.println("Skill: " + character.getSkill());
             System.out.println("Health: " + Character.getHealth());
             System.out.println("______________________");
+
+            // Create first enemy (default, has to be fought to get to gameplay)
             Enemy enemy = enemyFactory.createEnemy("goblin");
             Attack enemyAttack = new AttackDecorator(enemy.getAttack(), 0.2, 0.1);
             System.out.println("You are unfortunately greeted by a nasty goblin, and you cannot escape this fight!");
             System.out.println("Let's test your wits and see what you've got, " + character.getName() + "!");
+
+            // Fight first enemy
             while (!enemy.isDead()) {
                 Attack charAttack = new AttackDecorator(character.getAttack(), 0.05, 0.25); // Beginner's luck
                 int damage = charAttack.performAttack();
